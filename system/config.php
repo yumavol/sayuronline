@@ -1,6 +1,6 @@
 <?php
+session_start();
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 
 # regular configuration
 $config = array();

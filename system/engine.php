@@ -24,7 +24,6 @@ function redirect($url) {
 }
 
 //session
-session_start();
 function set_session($data = array()){
 	foreach ($data as $key => $val) {
 		$_SESSION["$key"] = $val;

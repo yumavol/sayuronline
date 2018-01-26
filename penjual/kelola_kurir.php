@@ -1,5 +1,5 @@
     <?php
-    require_once('../../../system/engine.php');
+    require_once('../system/engine.php');
 
 
     define("menu_kelola_pegawai", true);
@@ -13,7 +13,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Kelola Pegawai
+                Kelola Kurir
             </h1>
         </section>
 

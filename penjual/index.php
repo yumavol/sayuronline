@@ -1,5 +1,5 @@
     <?php
-    require_once('../../system/engine.php');
+    require_once('../system/engine.php');
 
 
     define("menu_dashboard", true);

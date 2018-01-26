@@ -5,7 +5,7 @@
     define("SITE_TITLE", 'Produk list');
 
 
-    require_once('layout/header.php'); ?>
+    require_once('../layout/header.php'); ?>
  
     <style type="text/css">
       .image{
@@ -133,7 +133,7 @@
     </div><!-- /.content-wrapper -->
 
 
-    <?php  require_once('layout/footer.php'); ?>
+    <?php  require_once('../layout/footer.php'); ?>
 
     <script type="text/javascript">
         $( "#form-input" ).validate( {
