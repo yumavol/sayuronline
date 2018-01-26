@@ -5,7 +5,7 @@
     define("SITE_TITLE", 'Produk list');
 
 
-    require_once('../layout/header.php'); ?>
+    require_once('layout/header.php'); ?>
 
 
     <style type="text/css">
@@ -43,9 +43,30 @@
         <!-- Main content -->
         <section class="content">
         <div class="row">
-        
-          <?php require_once('../layout/sidebar.php'); ?>
-          
+          <div class="col-md-3">
+            <div style="min-height: 500px; padding-left: 10px;" class="box box-solid">
+              <div class="box-body">
+                <form method="get" action="">
+                <label>Kategori</label>
+                <select id="urutkan" name="kategori" class="form-control" style="max-width: 150px">
+                    <option value="">Pilih Kategori</option>
+                  <?php foreach ($kategori as $kat) { ?>
+                    <option <?php echo ($kat->id == $kat_id) ? 'selected' : '' ; ?> value="<?php echo $kat->id; ?>"><?php echo $kat->nama; ?></option>
+                  <?php } ?>
+                </select>
+                <br>
+                <label>Urutkan</label>
+                <select id="urutkan" name="orderby" class="form-control" style="max-width: 150px">
+                  <option value="">Urutkan berdasarkan</option>
+                  <option <?php echo ($orderby == 'harga_tinggi') ? 'selected' : '' ; ?> value="harga_tinggi">Harga Tertinggi</option>
+                  <option <?php echo ($orderby == 'harga_rendah') ? 'selected' : '' ; ?> value="harga_rendah">Harga Terendah</option>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-sm btn-primary" > Kirim</button>
+                </form>
+              </div>
+            </div><!-- /.box -->
+          </div><!-- /.col -->
           <div class="col-md-9">
           <?php $i = 1; 
               
@@ -86,7 +107,7 @@
                 <div class="box-footer" style="padding-bottom: 0px">
                   <p><label><?php echo format_uang($res->harga); ?></span></label></p>
                   <p><label><small><?php echo $res->nama; ?></small></label></p>
-                  <p><a href="<?php echo base_url('produk/detail.php?id=').$res->id ?>" class="btn btn-block btn-xs btn-info"><i class="fa fa-long-arrow-left"></i> Selengkapnya</a></p>
+                  <p><a href="<?php echo base_url('users/user/produk.php?id=').$res->id ?>" class="btn btn-block btn-xs btn-info"><i class="fa fa-long-arrow-left"></i> Selengkapnya</a></p>
                 </div>
               </div><!-- /.box --> 
             </div>
@@ -114,7 +135,7 @@
     <!-- /.content-wrapper -->
 
 
-    <?php  require_once('../layout/footer.php'); ?>
+    <?php  require_once('layout/footer.php'); ?>
     <script type="text/javascript">
       
 

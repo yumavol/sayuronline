@@ -74,19 +74,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="<?php echo base_url('') ?>" class="navbar-brand"><b>Sayur</b>Online</a>
+          <a href="<?php echo base_url('users/user') ?>" class="navbar-brand"><b>Sistem</b>POS</a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-            <i class="fa fa-search"></i>
+            <i class="fa fa-bars"></i>
           </button>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input class="form-control" id="navbar-search-input" placeholder="Search here and hit enter .." type="text">
-            </div>
-          </form>
+          <ul class="nav navbar-nav">
+            <li class="<?php echo (defined('ON_SHOP')) ? 'active' : '' ; ?>">
+              <a href="<?php echo base_url('users/user') ?>"><i class="fa fa-th-large"></i> Produk <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="<?php echo (defined('ON_PEMESANAN')) ? 'active' : '' ; ?>">
+              <a href="<?php echo base_url('users/user/pemesanan.php') ?>"><i class="fa fa-shopping-bag"></i> Pesanan anda
+                <span class="label label-danger">12</span></a>
+            </li>
+          </ul>
         
         </div>
         <!-- /.navbar-collapse -->
@@ -96,7 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Tasks Menu -->
             <li class="dropdown tasks-menu">
               <!-- Menu Toggle Button -->
-              <a href="<?php echo base_url('users/keranjang.php'); ?>" >
+              <a href="<?php echo base_url('users/user/keranjang.php') ?>" >
                 <i class="glyphicon glyphicon-shopping-cart"></i>
                 <span class="label label-danger">5</span>
               </a>
@@ -105,8 +109,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <li class="dropdown user user-menu">
               <!-- Menu Toggle Button -->
               <a href="#"  class="dropdown-toggle" data-toggle="dropdown">
-                <span class=""> 
-                  <i class="fa fa-user"></i>
+                <span class="">
+                  <span class="user-image" style="
+                  padding-top: 3px;
+                    font-size: 22px;
+                    text-align: center;
+                    background: #fff;
+                    width: 27px;
+                    height: 27px;
+                    color: #333;
+                    display: inline-block;
+                    border-radius: 50%;
+                    -webkit-touch-callout: none;
+                    -webkit-admin-select: none;
+                    -khtml-admin-select: none;
+                    -moz-admin-select: none;
+                    -ms-admin-select: none;
+                    admin-select: none;
+
+                  ">Y</span>
                   Yuma Yusuf
                 </span>
               </a>
