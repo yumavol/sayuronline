@@ -5,7 +5,7 @@
     define("SITE_TITLE", 'Produk list');
 
 
-    require_once('layout/header.php'); ?>
+    require_once('../layout/header.php'); ?>
 
 
   <style type="text/css">

@@ -74,7 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <nav class="navbar navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="<?php echo base_url('users/user') ?>" class="navbar-brand"><b>Sistem</b>POS</a>
+          <a href="<?php echo base_url('') ?>" class="navbar-brand"><b>Sistem</b>POS</a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -100,7 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Tasks Menu -->
             <li class="dropdown tasks-menu">
               <!-- Menu Toggle Button -->
-              <a href="<?php echo base_url('users/user/keranjang.php') ?>" >
+              <a href="<?php echo base_url('users/keranjang.php'); ?>" >
                 <i class="glyphicon glyphicon-shopping-cart"></i>
                 <span class="label label-danger">5</span>
               </a>

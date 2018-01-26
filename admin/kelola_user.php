@@ -1,12 +1,12 @@
-    <?php
-    require_once('../system/engine.php');
+<?php
+require_once('../system/engine.php');
 
 
-    define("menu_kelola_user", true);
-    define("SITE_TITLE", 'Keloa User');
- 
-    require_once('../layout/header.php');
-    ?>
+define("menu_kelola_user", true);
+define("SITE_TITLE", 'Keloa User');
+
+require_once('../layout/header.php');
+?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

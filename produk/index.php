@@ -107,7 +107,7 @@
                 <div class="box-footer" style="padding-bottom: 0px">
                   <p><label><?php echo format_uang($res->harga); ?></span></label></p>
                   <p><label><small><?php echo $res->nama; ?></small></label></p>
-                  <p><a href="<?php echo base_url('users/user/produk.php?id=').$res->id ?>" class="btn btn-block btn-xs btn-info"><i class="fa fa-long-arrow-left"></i> Selengkapnya</a></p>
+                  <p><a href="<?php echo base_url('produk/detail.php?id=').$res->id ?>" class="btn btn-block btn-xs btn-info"><i class="fa fa-long-arrow-left"></i> Selengkapnya</a></p>
                 </div>
               </div><!-- /.box --> 
             </div>

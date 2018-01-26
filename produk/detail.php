@@ -1,5 +1,5 @@
 <?php
-    require_once('../system/engine.php');
+require_once('../system/engine.php');
 
     define('ON_KERANJANG', true);
     define("SITE_TITLE", 'Produk list');
@@ -69,7 +69,7 @@
         </section>
 
         <!-- Main content -->
-        <form id="form-input" method="post" action="">
+        <form id="form-input" method="post" action="<?php echo base_url('users/keranjang.php'); ?>">
         <section class="content">
             <div style="min-height: 500px" class="box box-primary">
               <div class="box-header">

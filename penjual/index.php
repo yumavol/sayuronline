@@ -1,12 +1,12 @@
-    <?php
-    require_once('../system/engine.php');
+<?php
+require_once('../system/engine.php');
 
 
-    define("menu_dashboard", true);
-    define("SITE_TITLE", 'Selamat Datang');
- 
-    require_once('layout/header.php');
-    ?>
+define("menu_dashboard", true);
+define("SITE_TITLE", 'Selamat Datang');
+
+require_once('layout/header.php');
+?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

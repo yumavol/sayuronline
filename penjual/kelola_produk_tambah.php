@@ -1,12 +1,12 @@
-    <?php
-    require_once('../system/engine.php');
+<?php
+require_once('../system/engine.php');
 
 
-    define("menu_kelola_produk", true);
-    define("SITE_TITLE", 'kelola produk');
- 
-    require_once('../layout/header.php');
-    ?>
+define("menu_kelola_produk", true);
+define("SITE_TITLE", 'kelola produk');
+
+require_once('../layout/header.php');
+?>
  
 
       

@@ -1,12 +1,12 @@
-    <?php
-    require_once('../system/engine.php');
+<?php
+require_once('../system/engine.php');
 
 
-    define("menu_kelola_pegawai", true);
-    define("SITE_TITLE", 'Keloa Pegawai');
- 
-    require_once('../layout/header.php');
-    ?>
+define("menu_kelola_pegawai", true);
+define("SITE_TITLE", 'Keloa Pegawai');
+
+require_once('../layout/header.php');
+?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
