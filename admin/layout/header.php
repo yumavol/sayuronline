@@ -107,7 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">Albl</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><small>Alabel Futsal</small></span>
+      <span class="logo-lg"><small>Sayur Online</small></span>
     </a>
 
     <!-- Header Navbar -->
