@@ -1,4 +1,4 @@
-<?php require_once('../../system/engine.php') ?>
+<?php require_once('system/engine.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
