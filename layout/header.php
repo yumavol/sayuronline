@@ -54,7 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   }
 </style>
  
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/skins/skin-blue.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/skins/skin-custom.css">
 
   <script>
     var BASE_URL = '<?php echo base_url();?>';
@@ -67,7 +67,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <![endif]-->
 </head>
 
-<body class="hold-transition skin-blue layout-top-nav">
+<body class="hold-transition skin-custom layout-top-nav">
 <div class="wrapper">
 
   <header class="main-header">
@@ -84,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
-              <input class="form-control" id="navbar-search-input" placeholder="Search here and hit enter .." type="text">
+              <input class="form-control" id="navbar-search-input" placeholder="Cari produk .." type="text">
             </div>
           </form>
         

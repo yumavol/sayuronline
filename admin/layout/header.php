@@ -83,7 +83,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </style>
 
 
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/skins/skin-blue-light.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/skins/skin-custom.css">
 
   <script>
     var BASE_URL = '<?php echo base_url();?>';
@@ -96,7 +96,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <![endif]-->
 </head>
 
-<body class="hold-transition skin-blue-light sidebar-mini">
+<body class="hold-transition skin-custom sidebar-mini">
 <div class="wrapper">
 
   <!-- Main Header -->
