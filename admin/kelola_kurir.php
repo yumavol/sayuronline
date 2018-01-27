@@ -1,11 +1,11 @@
-    <?php
-    require_once('../../../system/engine.php');
+<?php
+require_once('../system/engine.php');
 
 
-    define("menu_kelola_user", true);
-    define("SITE_TITLE", 'Keloa User');
- 
-    require_once('../layout/header.php');
+define("menu_kelola_kurir", true);
+define("SITE_TITLE", 'Keloa Kurir');
+
+require_once('layout/header.php');
     ?>
 
     <!-- Content Wrapper. Contains page content -->
@@ -13,7 +13,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Kelola User
+                Kelola Kurir
             </h1>
         </section>
 
@@ -24,25 +24,23 @@
                 <div class="col-md-12">
                     <div class="box">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Daftar User</h3>
+                            <h3 class="box-title">Daftar Kurir</h3>
                             <div class="box-tools pull-right"> 
-                                <a data-target="#modal_tambah" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i> Tambah User</a>
+                                <a data-target="#modal_tambah" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i> Tambah Kurir</a>
                             </div><!-- /.box-tools -->
                         </div><!-- /.box-header -->
                         <div class="box-body no-padding">
                             <table id="data_table" class="table table-bordered">
                                 <tr>
-                                    <th>Nama </th>
-                                    <th>Nama Pengguna</th>
+                                    <th>Nama </th> 
                                     <th>Email</th>
                                     <th>No telepon</th> 
                                     <th width="20%"></th>
                                 </tr> 
                                 <tr>
-                                    <td>Yuma Yusuf MA</td>
-                                    <td>Yumavol</td>
-                                    <td>Yumavol@gmail.com</td>
-                                    <td>0813190822131</td>
+                                    <td>Dadang Fauzan</td> 
+                                    <td>iad@gmail.com</td>
+                                    <td>0812322222131</td>
                                     <td> 
                                     <a  data-target="#modal_edit" data-toggle="modal" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> edit</a>
                                     <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> hapus</a>
@@ -62,7 +60,7 @@
 
 
 
-    <!-- Modal Tambah User -->
+    <!-- Modal Tambah Kurir -->
 
    <form class="form-horizontal" method="post" action="#">
    <div id="modal_tambah" class="modal fade " role="dialog">
@@ -72,7 +70,7 @@
          <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Tambah User</h4>
+               <h4 class="modal-title">Tambah Kurir</h4>
             </div>
           
             <div class="modal-body">
@@ -98,35 +96,7 @@
                         <div class="col-sm-8">
                            <input class="form-control" placeholder="Email" type="email">
                         </div>
-                     </div> 
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Username</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="Password" type="text">
-                        </div>
-                     </div>
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Password</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="Password" type="text">
-                        </div>
-                     </div>
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Konfirmasi Password</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="Konfirmasi Password" type="text">
-                        </div>
-                     </div>
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Alamat</label> 
-                        <div class="col-sm-8">
-                           <textarea class="form-control" placeholder="Alamat"></textarea>
-                        </div>
-                     </div>
+                     </div>   
 
                   </div><!-- ed col -->
                </div><!-- end row -->
@@ -154,7 +124,7 @@
          <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Edit User</h4>
+               <h4 class="modal-title">Edit Kurir</h4>
             </div>
           
             <div class="modal-body">
@@ -180,35 +150,7 @@
                         <div class="col-sm-8">
                            <input class="form-control" placeholder="Email" type="email">
                         </div>
-                     </div> 
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Username</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="Password" type="text">
-                        </div>
-                     </div>
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Password</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="Password" type="text">
-                        </div>
-                     </div>
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Konfirmasi Password</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="Konfirmasi Password" type="text">
-                        </div>
-                     </div>
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Alamat</label> 
-                        <div class="col-sm-8">
-                           <textarea class="form-control" placeholder="Alamat"></textarea>
-                        </div>
-                     </div>
+                     </div>    
 
                   </div><!-- ed col -->
                </div><!-- end row -->

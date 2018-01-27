@@ -1,11 +1,11 @@
-    <?php
-    require_once('../../../system/engine.php');
+<?php
+require_once('../system/engine.php');
 
 
     define("menu_kelola_produk_kategori", true);
     define("SITE_TITLE", 'Kelola produk');
  
-    require_once('../layout/header.php');
+    require_once('layout/header.php');
     ?>
  
 

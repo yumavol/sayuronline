@@ -1,11 +1,11 @@
-    <?php
-    require_once('../../../system/engine.php');
+<?php
+require_once('../system/engine.php');
 
 
     define("menu_kelola_produk", true);
     define("SITE_TITLE", 'Kelola produk');
  
-    require_once('../layout/header.php');
+    require_once('layout/header.php');
     ?>
  
 
@@ -32,7 +32,7 @@
                                     <div class="box-tools pull-right">
                                         <!-- Buttons, labels, and many other things can be placed here! -->
                                         <!-- Here is a label for example -->
-                                        <a class="btn btn-primary btn-sm" href="#"><i class="fa fa-plus"></i> Tambah Produk</a>
+                                        <a class="btn btn-primary btn-sm" href="tambah.php"><i class="fa fa-plus"></i> Tambah Produk</a>
                                     </div><!-- /.box-tools -->
                                 </div><!-- /.box-header -->
                                 <div class="box-body no-padding">
