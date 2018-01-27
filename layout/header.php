@@ -83,8 +83,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input class="form-control" id="navbar-search-input" placeholder="Cari produk .." type="text">
+            <div class="form-group has-feedback">
+              <input class="form-control input-sm" id="navbar-search-input" placeholder="Cari produk .." type="text">
+              <span class="fa fa-search text-muted form-control-feedback"></span>
             </div>
           </form>
         

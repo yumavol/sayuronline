@@ -156,6 +156,10 @@
 .main-header #navbar-search-input.form-control:focus{
   background: #fff;
 } 
+
+.navbar-form .form-control.input-sm{
+  margin-top: 3px;
+}
 @media (min-width: 768px) {
   .skin-custom.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
     border-left: 1px solid #d2d6de;
