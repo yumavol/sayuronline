@@ -43,7 +43,7 @@
  
     <p class="login-box-msg">Silahkan Login Untuk Melanjutkan</p>
 
-    <form action="<?php echo base_url('staff/login/check');?>" method="post">
+    <form action="" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" name="username" placeholder="Username">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>

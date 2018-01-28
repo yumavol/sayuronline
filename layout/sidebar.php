@@ -3,15 +3,21 @@
         <div class="box-body">
           <ul class="nav nav-pills nav-stacked">
             <?php
-            if(get_session('user_login')) {
+            if(get_session('tipe_user') == 'pembeli') {
             ?>
             <li role="presentation"><a href="#"><i class="fa fa-archive"></i> Produk</a></li>
-            <li role="presentation" class="active"><a href="#"><i class="fa fa-shopping-cart"></i>Keranjang</a></li>
-            <li role="presentation"><a href="#"><i class="fa fa-credit-card"></i>Pemesanan</a></li>
-            <li role="presentation"><a href="#"><i class="fa fa-sign-out"></i>Logout</a></li>
-            <?php } else { ?>
-            <li role="presentation"><a href="#"><i class="fa fa-sign-in"></i> Login</a></li>
-            <li role="presentation"><a href="#"><i class="fa fa-users"></i>Daftar</a></li>
+            <li role="presentation" class="active"><a href="#"><i class="fa fa-shopping-cart"></i> Keranjang</a></li>
+            <li role="presentation"><a href="#"><i class="fa fa-credit-card"></i> Pemesanan</a></li>
+            <li role="presentation"><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
+            <?php
+            } else if(get_session('login')) {
+            ?>
+            <li role="presentation"><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
+            <?php
+            } else {
+            ?>
+            <li role="presentation"><a href="<?php echo base_url('login.php');?>"><i class="fa fa-sign-in"></i> Login</a></li>
+            <li role="presentation"><a href="<?php echo base_url('pendaftaran.php');?>"><i class="fa fa-users"></i> Daftar</a></li>
             <?php } ?>
           </ul>
         </div>

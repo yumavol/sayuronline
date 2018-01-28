@@ -22,6 +22,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <link rel="stylesheet" href="<?php echo(base_url('assets/css/font.css')) ?>">
 
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/skins/skin-custom.css">
 <?php if(isset($css)) {foreach($css as $c) { ?>
   <link rel="stylesheet" href="<?php echo base_url($c);?>">
 <?php }} ?>
@@ -53,8 +54,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   }
 </style>
- 
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/skins/skin-custom.css">
 
   <script>
     var BASE_URL = '<?php echo base_url();?>';

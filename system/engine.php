@@ -132,5 +132,5 @@ if(defined('load_pagination')){
 }
 
 require_once dirname(dirname(__FILE__)) . '/constanta.php';
-// require_once('database.php');
+require_once('database_mysqli.php');
 require_once('helper.php');
