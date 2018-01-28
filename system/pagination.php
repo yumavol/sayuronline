@@ -7,8 +7,10 @@ function pagination($baseUrl, $totalResults, $resultsPerPage, $currentPage, $que
     return '';
  
     $queryString = '';
-    if($queryStringArray)
-    $queryString = '&'.http_build_query($queryStringArray);
+    if($queryStringArray) {
+        unset($queryStringArray['page']);
+        $queryString = '&'.http_build_query($queryStringArray);
+    }
     
     $rightLinks = $currentPage+3;
     $previousLinks = $currentPage-3;

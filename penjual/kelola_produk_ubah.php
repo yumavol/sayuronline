@@ -8,6 +8,8 @@ define("SITE_TITLE", 'Tambah Produk');
 
 $form_error = [];
 
+$data = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM produk WHERE no_produk='" . mysqli_real_escape_string($con, $_GET['no_produk']) . "'"));
+
 if(!empty($_POST)) {
   trim_validate($_POST);
 
@@ -26,9 +28,6 @@ if(!empty($_POST)) {
   }
   if(is_error($no_kategori, 'required')) {
     $form_error[] = 'Kategori wajib diisi.';
-  }
-  if(is_error($foto['name'], 'required')) {
-    $form_error[] = 'Foto wajib diisi.';
   }
   if(is_error($deskripsi, 'required')) {
     $form_error[] = 'Deskripsi wajib diisi.';
@@ -59,27 +58,28 @@ if(!empty($_POST)) {
     $config_foto['directory'] = 'uploads/foto';
     $config_foto['allowed_ext'] = array('jpg', 'jpeg', 'gif', 'png', 'bmp');
 
-    $upload = do_upload($_FILES['foto'], $config_foto);
+    $data_update = array(
+      'no_kategori' => $no_kategori, 
+      'nama' => $nama, 
+      'deskripsi' => $deskripsi, 
+      'harga' => $harga, 
+      'slug' => $slug
+    );
+    if(!empty($foto['name'])) {
+      $upload = do_upload($_FILES['foto'], $config_foto);
 
-    if($upload['success'] == true) {
-      $file_foto = $upload['file_name'];
-
-
-      $data_insert = array(
-        'no_kategori' => $no_kategori, 
-        'nama' => $nama, 
-        'deskripsi' => $deskripsi, 
-        'harga' => $harga, 
-        'foto' => $file_foto, 
-        'slug' => $slug
-      );
-
-      if(insert_db($data_insert, 'produk')) {
-        set_flashdata('sukses', 'Berhasil menambah produk.');
-        redirect(base_url('penjual/kelola_produk.php'));
+      if($upload['success'] == true) {
+        $data_update['foto'] = $upload['file_name'];
+      } else {
+        $form_error = array_merge($form_error, $upload['errors']);
       }
+    }
+    if(update_db($data_update, 'produk', "no_produk='" . mysqli_real_escape_string($con, $_GET['no_produk']) . "'")) {
+      set_flashdata('sukses', 'Berhasil mengubah produk.');
+      redirect(base_url('penjual/kelola_produk.php'));
     } else {
-      $form_error = array_merge($form_error, $upload['errors']);
+      set_flashdata('error', 'Gagal mengubah produk.');
+      redirect(base_url('penjual/kelola_produk.php'));
     }
   }
 }
@@ -121,12 +121,12 @@ require_once('layout/header.php');
                           <div class="box-body">
                               <div class="form-group <?php echo (!empty($nama) && is_error($nama, 'required|min_length[3]|max_length[50]')) ? 'has-error': '' ;?>">
                                 <label for="nama_produk">Nama</label>
-                                <input type="text" id="nama_produk" class="form-control" name="nama" placeholder="Nama ..." value="<?php echo (!empty($_POST['nama'])) ? $_POST['nama'] : '';?>" required>
+                                <input type="text" id="nama_produk" class="form-control" name="nama" placeholder="Nama ..." value="<?php echo (!empty($_POST['nama'])) ? $_POST['nama'] : $data['nama'];?>" required>
                               </div>
 
                               <div class="form-group <?php echo (!empty($harga) && is_error($harga, 'required')) ? 'has-error': '' ;?>">
                                 <label for="harga_produk">Harga</label>
-                                <input type="text" id="harga_produk" class="form-control" name="harga" placeholder="Harga ..." value="<?php echo (!empty($_POST['harga'])) ? $_POST['harga'] : '';?>" required>
+                                <input type="text" id="harga_produk" class="form-control" name="harga" placeholder="Harga ..." value="<?php echo (!empty($_POST['harga'])) ? $_POST['harga'] : $data['harga'];?>" required>
                               </div>
 
                               <div class="form-group <?php echo (!empty($no_kategori) && is_error($no_kategori, 'required')) ? 'has-error': '' ;?>">
@@ -136,8 +136,13 @@ require_once('layout/header.php');
                                   <?php
                                   $query = mysqli_query($con, "SELECT * FROM kategori_produk");
                                   while($row = mysqli_fetch_array($query)) {
-                                    echo '<option value="' . $row['no_kategori'] . '" ' . ((!empty($_POST['no_kategori']) && ($_POST['no_kategori'] == $row['no_kategori'])) ? 'selected' : '') .'>' . $row['nama'] . '</option>';
-                                  }?>
+                                    if(!empty($_POST['no_kategori'])) {
+                                      echo '<option value="' . $row['no_kategori'] . '" ' . (!empty($_POST['no_kategori']) && ($_POST['no_kategori'] == $row['no_kategori']) ? 'selected' : '') .'>' . $row['nama'] . '</option>';
+                                    } else {
+                                      echo '<option value="' . $row['no_kategori'] . '" ' . (($data['no_kategori'] == $row['no_kategori']) ? 'selected' : '') .'>' . $row['nama'] . '</option>';
+                                    }
+                                  }
+                                  ?>
                                 </select>
                               </div>
 
@@ -149,7 +154,7 @@ require_once('layout/header.php');
 
                               <div class="form-group <?php echo (!empty($deskripsi) && is_error($deskripsi, 'required|min_length[5]')) ? 'has-error': '' ;?>">
                                 <label>Deskripsi</label>
-                                <textarea class="form-control" style="height: 200px" name="deskripsi" rows="5" cols="20" required><?php echo (!empty($_POST['deskripsi'])) ? $_POST['deskripsi'] : '';?></textarea>
+                                <textarea class="form-control" style="height: 200px" name="deskripsi" rows="5" cols="20" required><?php echo (!empty($_POST['deskripsi'])) ? $_POST['deskripsi'] : $data['deskripsi'];?></textarea>
                               </div>
 
                           </div><!-- /.box body -->
