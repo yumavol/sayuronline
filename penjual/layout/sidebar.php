@@ -21,8 +21,8 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li <?php echo (defined("menu_kelola_produk")) ? 'class="active"' : '' ; ?>><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-          <li <?php echo (defined("menu_kelola_produk_kategori")) ? 'class="active"' : '' ; ?>><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+          <li <?php echo (defined("menu_kelola_produk")) ? 'class="active"' : '' ; ?>><a href="<?php echo base_url('penjual/kelola_produk.php');?>"><i class="fa fa-circle-o"></i> Kelola Produk</a></li>
+          <li <?php echo (defined("menu_kelola_produk_kategori")) ? 'class="active"' : '' ; ?>><a href="<?php echo base_url('penjual/kelola_produk_kategori.php');?>"><i class="fa fa-circle-o"></i> Kelola Kategori Produk</a></li>
         </ul>
       </li>
 
@@ -31,7 +31,7 @@
       </li>
 
       <li <?php echo (defined("menu_kelola_kurir")) ? 'class="active"' : '' ; ?>>
-        <a href="#"><i class="fa fa-truck"></i> <span>Kelola Petugas Kurir </span></a>
+        <a href="<?php echo base_url('penjual/kelola_kurir.php');?>"><i class="fa fa-truck"></i> <span>Kelola Petugas Kurir </span></a>
       </li>
 
 

@@ -3,9 +3,9 @@ require_once('../system/engine.php');
 
 
 define("menu_kelola_produk", true);
-define("SITE_TITLE", 'kelola produk');
+define("SITE_TITLE", 'Tambah Produk');
 
-require_once('../layout/header.php');
+require_once('layout/header.php');
 ?>
  
 

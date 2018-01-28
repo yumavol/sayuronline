@@ -3,7 +3,7 @@ require_once('../system/engine.php');
 
 
 define("menu_dashboard", true);
-define("SITE_TITLE", 'Selamat Datang');
+define("SITE_TITLE", 'Dashboard Penjual');
 
 require_once('layout/header.php');
 ?>

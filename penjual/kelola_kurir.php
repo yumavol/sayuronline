@@ -2,10 +2,10 @@
 require_once('../system/engine.php');
 
 
-define("menu_kelola_pegawai", true);
-define("SITE_TITLE", 'Keloa Pegawai');
+define("menu_kelola_kurir", true);
+define("SITE_TITLE", 'Kelola Kurir');
 
-require_once('../layout/header.php');
+require_once('layout/header.php');
 ?>
 
     <!-- Content Wrapper. Contains page content -->

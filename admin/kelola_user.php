@@ -3,7 +3,7 @@ require_once('../system/engine.php');
 
 
 define("menu_kelola_user", true);
-define("SITE_TITLE", 'Keloa User');
+define("SITE_TITLE", 'Kelola User');
 
 require_once('layout/header.php');
     ?>
