@@ -1,45 +1,27 @@
 <?php
     require_once('../system/engine.php');
+    require_once('../system/keranjang.php');
 
     define('ON_KERANJANG', true);
     define("SITE_TITLE", 'Produk list');
 
-    function insert_cart($data){
-      $cart_data = array($data);
-      if(isset($_SESSION['cart'])){
-        $session_cart = $_SESSION['cart']; 
-        $cart_data = $data;
-        array_push($session_cart, $cart_data);
-        $cart_data = $session_cart; 
-      }   
-      $no_produk = $data['no_produk'];
-      $_SESSION['cart']["$no_produk"] = $cart_data; 
+    if(isset($_GET['hapus'])) {
+      hapus_keranjang($_GET['hapus']);
+      redirect(base_url('users/keranjang.php'));
+    }
+
+    if(isset($_GET['update']) && isset($_GET['qty'])) {
+      update_keranjang($_GET['update'], $_GET['qty']);
+      die();
     }
 
     if(isset($_POST['id'])){
       $produk_id = $_POST['id']; 
 
-      //$data = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM produk WHERE no_produk='" . mysqli_real_escape_string($con, $produk_id) . "'"));
-      
-      $data = array('nama' => 'nini', 'no_produk' => 1);
-
-      if($data){
-        insert_cart($data);
-      }
-
-      //destroy_session(array('cart'));
-      
-      $data_keranjang = get_session('cart');
-      //print_r($data_keranjang); die;
-
-      foreach ($data_keranjang as $dt) {
-        print_r($dt);echo '<br><br>';
-      }
-    
-       
+      tambah_keranjang($produk_id);
 
 
-    }die;
+    }
     require_once('../layout/header.php'); ?>
 
 
@@ -99,21 +81,21 @@
                     <th width="10%">Jumlah</th>
                     <th width="10%"></th>
                   </tr> 
-                    
-                    <tr>
-                      <td><div class="img"><img src="#"></div></td>
-                      <td><a href="#">Sauran Basi</a></td> 
-                      <td><?php echo format_uang(600000); ?></td>
-                      <td class="text-center"> 
-                      <select data-id="1" class="form-control jumlah_update" name="jumlah">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                      </select> 
+                  <?php
+                  foreach(daftar_keranjang() as $keranjang) {
 
+                    $data_produk = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM produk WHERE no_produk='" . $keranjang['id'] . "'"));
+                  ?>
+                    <tr>
+                      <td><div class="img"><img src="<?php echo base_url('uploads/foto/' .$data_produk['foto']); ?>"></div></td>
+                      <td><a href="<?php echo base_url('produk/detail.php?slug=' . $data_produk['slug']);?>"><?php echo $data_produk['nama'];?></a></td> 
+                      <td><?php echo format_uang($data_produk['harga']); ?></td>
+                      <td class="text-center"> 
+                        <input type="number" data-id="<?php echo $keranjang['id'];?>" class="form-control jumlah_update" name="jumlah" value="<?php echo $keranjang['qty'];?>">
                       </td>
-                      <td class="text-center"><a class="btn btn-xs btn-danger" href="#"><i class="fa fa-trash"></i> hapus</a></td>
-                    </tr>   
+                      <td class="text-center"><a class="btn btn-xs btn-danger" href="<?php echo base_url('users/keranjang.php?hapus=' . $keranjang['id']);?>"><i class="fa fa-trash"></i> hapus</a></td>
+                    </tr>
+                  <?php } ?> 
                 </table> 
                 </div><!-- tableressponsive -->
                 <!--
@@ -130,7 +112,7 @@
                 -->
               </div><!--box body-->
               <div class="box-footer">
-              <a href="<?php echo base_url('users/user') ?>" class="btn btn-default pull-left" ><i class="fa fa-shopping-bag"></i> Kembali berbelanja</a>
+              <a href="<?php echo base_url('produk/') ?>" class="btn btn-default pull-left" ><i class="fa fa-shopping-bag"></i> Kembali berbelanja</a>
               <button type="submit" value="1" name="submit" class="btn btn-primary pull-right" ><i class="fa fa-credit-card"></i> Checkout</button>
               </div><!--box footer-->
             </div><!--box-->   
@@ -143,13 +125,13 @@
     <?php  require_once('../layout/footer.php'); ?>
     <script type="text/javascript">
       $('.jumlah_update').on('change', function() {
-          var uri = "<?php echo base_url() ?>users/user/keranjang_update_stok.php";
+          var uri = "<?php echo base_url('users/keranjang.php'); ?>";
           var keranjang_id = $(this).data('id');
           var value = $(this).val();
           $.ajax({
-              type:'POST',
+              type:'GET',
               dataType:'json',
-              data: {id : keranjang_id, update : value} ,
+              data: {update : keranjang_id, qty : value} ,
               url: uri,
               complete :function(data){ 
                   location.reload();         
