@@ -84,7 +84,7 @@ require_once('layout/header.php');
                               </div><!-- /.box-body -->
                               <div class="box-footer">
                                   <?php
-                                  echo pagination(base_url('penjual/kelola_produk.php'), $total_row, 10, $current_page, $query_string);
+                                  echo pagination(base_url('penjual/kelola_produk_kategori.php'), $total_row, 10, $current_page, $query_string);
                                   ?>
                               </div><!-- box-footer -->
                           </div><!-- /.box -->
