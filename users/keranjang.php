@@ -4,7 +4,42 @@
     define('ON_KERANJANG', true);
     define("SITE_TITLE", 'Produk list');
 
+    function insert_cart($data){
+      $cart_data = array($data);
+      if(isset($_SESSION['cart'])){
+        $session_cart = $_SESSION['cart']; 
+        $cart_data = $data;
+        array_push($session_cart, $cart_data);
+        $cart_data = $session_cart; 
+      }   
+      $no_produk = $data['no_produk'];
+      $_SESSION['cart']["$no_produk"] = $cart_data; 
+    }
 
+    if(isset($_POST['id'])){
+      $produk_id = $_POST['id']; 
+
+      //$data = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM produk WHERE no_produk='" . mysqli_real_escape_string($con, $produk_id) . "'"));
+      
+      $data = array('nama' => 'nini', 'no_produk' => 1);
+
+      if($data){
+        insert_cart($data);
+      }
+
+      //destroy_session(array('cart'));
+      
+      $data_keranjang = get_session('cart');
+      //print_r($data_keranjang); die;
+
+      foreach ($data_keranjang as $dt) {
+        print_r($dt);echo '<br><br>';
+      }
+    
+       
+
+
+    }die;
     require_once('../layout/header.php'); ?>
 
 
@@ -105,7 +140,7 @@
     </div><!-- /.content-wrapper -->
 
 
-    <?php  require_once('layout/footer.php'); ?>
+    <?php  require_once('../layout/footer.php'); ?>
     <script type="text/javascript">
       $('.jumlah_update').on('change', function() {
           var uri = "<?php echo base_url() ?>users/user/keranjang_update_stok.php";

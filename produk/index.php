@@ -1,9 +1,30 @@
 <?php
-    require_once('../system/engine.php');
+  define("load_pagination", true);
+  require_once('../system/engine.php');
 
-    define('ON_KERANJANG', true);
-    define("SITE_TITLE", 'Produk list');
+  define('ON_KERANJANG', true);
+  define("SITE_TITLE", 'Produk list');
 
+
+  $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
+  $total_row = 0;
+  $limit_page = 12;
+  $query_string = $_GET;
+  if(!empty($_GET['cari'])) {
+      $sql = "SELECT * FROM produk
+      WHERE nama LIKE '%" . mysqli_real_escape_string($con, $_GET['cari']) . "%'";
+
+      $total_row = mysqli_num_rows(mysqli_query($con, $sql));
+  } else {
+      $sql = "SELECT * FROM produk";
+      $total_row = mysqli_num_rows(mysqli_query($con, $sql));
+  } 
+   
+  $sql .= " LIMIT " . (($current_page - 1) * $limit_page) . ", $limit_page";  
+  $data_produk = mysqli_query($con, $sql);
+
+  
+  
 
     require_once('../layout/header.php'); ?>
 
@@ -36,7 +57,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-              Produk <small>Produk kami</small>
+              Produk 
+              <?php if(isset($_GET['cari'])) { ?>
+              <small>Pencarian dengan kata kunci "<?php echo $_GET['cari']; ?>"</small>
+              <?php }else{ ?>
+              <small>Produk kami</small>
+              <?php } ?>
           </h1>
         </section>
 
@@ -48,25 +74,8 @@
           
           <div class="col-md-9">
           <?php $i = 1; 
-              
-              //dummy data
-              $result  = array(new StdClass());
-              $result[0]->gambar = '#';
-              $result[0]->nama =  'Kue Basi';
-              $result[0]->harga = 50000;
-              $result[0]->id = 2;
-              
-              @$result[1]->gambar = '#';
-              $result[1]->nama =  'Kue Kering';
-              $result[1]->harga = 50000;
-              $result[1]->id = 1;
 
-              @$result[2]->gambar = '#';
-              $result[2]->nama =  'Kue Basi';
-              $result[2]->harga = 60000;
-              $result[2]->id = 1;
-
-               foreach ($result as $res) { 
+               while($res = mysqli_fetch_array($data_produk)) { 
                if(($i == 1)){ ?>
             <div class="row"><!-- row product -->
           <?php } //end if 
@@ -81,12 +90,12 @@
               <div class="box box-solid">
                 <div class="box-body no-padding">
 
-                  <div class="image"><img src="<?php echo base_url('uploads/produk/').$res->gambar; ?>"></div>
+                  <div class="image"><img src="<?php echo base_url('uploads/produk/').$res['gambar']; ?>"></div>
                 </div>
                 <div class="box-footer" style="padding-bottom: 0px">
-                  <p><label><?php echo format_uang($res->harga); ?></span></label></p>
-                  <p><label><small><?php echo $res->nama; ?></small></label></p>
-                  <p><a href="<?php echo base_url('produk/detail.php?id=').$res->id ?>" class="btn btn-block btn-xs btn-info"><i class="fa fa-long-arrow-left"></i> Selengkapnya</a></p>
+                  <p><label><?php echo format_uang($res['harga']); ?></span></label></p>
+                  <p><label><small><?php echo $res['nama']; ?></small></label></p>
+                  <p><a href="<?php echo base_url('produk/detail.php?slug=').$res['slug'] ?>" class="btn btn-block btn-xs btn-info"><i class="fa fa-long-arrow-left"></i> Selengkapnya</a></p>
                 </div>
               </div><!-- /.box --> 
             </div>
@@ -95,13 +104,9 @@
             <?php } ?>            
             </div><!-- /.row --> 
 
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">«</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">»</a></li>
-              </ul>
+              <?php
+              echo pagination(base_url('produk/index.php'), $total_row, $limit_page, $current_page, $query_string);
+              ?>
             
 
           </div><!-- /.col -->

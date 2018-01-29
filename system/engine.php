@@ -26,6 +26,7 @@ function redirect($url) {
 //session
 function set_session($data = array()){
 	foreach ($data as $key => $val) {
+		//print_r($val); die;
 		$_SESSION["$key"] = $val;
 	}
 }

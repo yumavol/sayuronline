@@ -1,4 +1,11 @@
 <?php ob_start(); ?>
+
+
+<?php  
+$value_cari = (isset($_GET['cari'])) ? $_GET['cari'] : '';
+
+
+?>
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -83,7 +90,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <form class="navbar-form navbar-left" role="search">
             <div class="form-group has-feedback">
-              <input class="form-control input-sm" id="navbar-search-input" placeholder="Cari produk .." type="text">
+              <form action="<?php echo base_url('produk/index.php') ?>" method="get"></form>
+              <input class="form-control input-sm" name="cari" value="<?php echo $value_cari ?>" placeholder="Cari produk .." type="text">
               <span class="fa fa-search text-muted form-control-feedback"></span>
             </div>
           </form>
