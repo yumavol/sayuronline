@@ -1,228 +1,98 @@
 <?php
+define("load_pagination", true);
 require_once('../system/engine.php');
 
 
 define("menu_kelola_kurir", true);
 define("SITE_TITLE", 'Kelola Kurir');
 
+$current_page = (!empty($_GET['page'])) ? $_GET['page'] : 0;
+$total_row = 0;
+$query_string = $_GET;
+if(!empty($_GET['cari'])) {
+    $sql = "SELECT * FROM petugas_kurir
+    WHERE nama LIKE '%" . mysqli_real_escape_string($con, $_GET['cari']) . "%'";
+    $total_row = mysqli_num_rows(mysqli_query($con, $sql));
+} else {
+    $sql = "SELECT * FROM petugas_kurir";
+    $total_row = mysqli_num_rows(mysqli_query($con, $sql));
+}
+
 require_once('layout/header.php');
 ?>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                Kelola Kurir
-            </h1>
-        </section>
-
-        <!-- Main content -->
-        <section class="content">
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Daftar Pegawai</h3>
-                            <div class="box-tools pull-right"> 
-                                <a data-target="#modal_tambah" data-toggle="modal" class="btn btn-sm btn-primary"><i class="fa fa-plus-circle"></i> Tambah Pegawai</a>
-                            </div><!-- /.box-tools -->
-                        </div><!-- /.box-header -->
-                        <div class="box-body no-padding">
-                            <table id="data_table" class="table table-bordered">
-                                <tr>
-                                    <th>Nama </th>
-                                    <th>Nama Pengguna</th>
-                                    <th>Email</th>
-                                    <th>No telepon</th> 
-                                    <th width="20%"></th>
-                                </tr> 
-                                <tr>
-                                    <td>Yuma Yusuf MA</td>
-                                    <td>Yumavol</td>
-                                    <td>Yumavol@gmail.com</td>
-                                    <td>0813190822131</td>
-                                    <td> 
-                                    <a  data-target="#modal_edit" data-toggle="modal" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> edit</a>
-                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> hapus</a>
-                                    </td>
-                                </tr> 
-                            </table>
-                        </div><!-- /.box-body -->
-                        <div class="box-footer"> 
-                        </div><!-- box-footer -->
-                    </div><!-- /.box -->
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
 
 
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+          <!-- Content Header (Page header) -->
+          <section class="content-header">
+              <h1>
+                  Tambah Petugas Kurir
+                  <a class="btn btn-primary btn-sm pull-right" href="<?php echo base_url('penjual/kelola_kurir_tambah.php');?>"><i class="fa fa-plus"></i> Tambah Petugas</a>
+              </h1>
+          </section>
 
-    <!-- Modal Tambah Pegawai -->
-
-   <form class="form-horizontal" method="post" action="#">
-   <div id="modal_tambah" class="modal fade " role="dialog">
-      <div class="modal-dialog ">
-
-        <!-- Modal content-->
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Tambah Pegawai</h4>
-            </div>
-          
-            <div class="modal-body">
-               <div class="row">
-                  <div class="col-md-12">
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Nama</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="nama" type="text">
-                        </div>
-                     </div> 
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">No Telp</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="No telepon" type="text">
-                        </div>
-                     </div> 
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Email</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="Email" type="email">
-                        </div>
-                     </div> 
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Pegawainame</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="Password" type="text">
-                        </div>
-                     </div>
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Password</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="Password" type="text">
-                        </div>
-                     </div>
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Konfirmasi Password</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="Konfirmasi Password" type="text">
-                        </div>
-                     </div>
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Alamat</label> 
-                        <div class="col-sm-8">
-                           <textarea class="form-control" placeholder="Alamat"></textarea>
-                        </div>
-                     </div>
-
-                  </div><!-- ed col -->
-               </div><!-- end row -->
-            
-            </div><!-- modal body -->
-
-            <div class="modal-footer">
-               <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-               <button type="submit" name="submit" value="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Simpan</button>
-            </div>
-        </div>  
-      </div> 
-   </div>  
-   </form><!-- end form -->
-
-
-
-
-   <!-- modal edit -->
-   <form class="form-horizontal" method="post" action="#">
-   <div id="modal_edit" class="modal fade " role="dialog">
-      <div class="modal-dialog ">
-
-        <!-- Modal content-->
-         <div class="modal-content">
-            <div class="modal-header">
-               <button type="button" class="close" data-dismiss="modal">&times;</button>
-               <h4 class="modal-title">Edit Pegawai</h4>
-            </div>
-          
-            <div class="modal-body">
-               <div class="row">
-                  <div class="col-md-12">
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Nama</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="nama" type="text">
-                        </div>
-                     </div> 
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">No Telp</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="No telepon" type="text">
-                        </div>
-                     </div> 
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Email</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="Email" type="email">
-                        </div>
-                     </div> 
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Pegawainame</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="Password" type="text">
-                        </div>
-                     </div>
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Password</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="Password" type="text">
-                        </div>
-                     </div>
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Konfirmasi Password</label> 
-                        <div class="col-sm-8">
-                           <input class="form-control" placeholder="Konfirmasi Password" type="text">
-                        </div>
-                     </div>
-
-                     <div class="form-group">
-                        <label class="col-sm-4 control-label">Alamat</label> 
-                        <div class="col-sm-8">
-                           <textarea class="form-control" placeholder="Alamat"></textarea>
-                        </div>
-                     </div>
-
-                  </div><!-- ed col -->
-               </div><!-- end row -->
-            
-            </div><!-- modal body -->
-
-            <div class="modal-footer">
-               <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-               <button type="submit" name="submit" value="submit" class="btn btn-primary pull-right"><i class="fa fa-check"></i> Simpan</button>
-            </div>
-        </div>  
-      </div> 
-   </div>  
-   </form><!-- end frm -->
-
+                <section class="content">
+                  <?php
+                  // validasi
+                  if(has_flashdata('sukses')) {
+                    echo alert_sukses(get_flashdata('sukses'));
+                  }
+                  if(has_flashdata('error')) {
+                    echo alert_error(get_flashdata('error'));
+                  }
+                  ?>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="box">
+                              <div class="box-header with-border">
+                                  <h3 class="box-title">Daftar Petugas Kurir</h3>
+                                  <div class="box-tools pull-right">
+                                    <form action="" method="get" class="form-horizontal">
+                                        <div class="input-group pull-right col-md-4">
+                                          <input type="text" name="cari" class="form-control" placeholder="Search for..." value="">
+                                          <span class="input-group-btn">
+                                            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i> Cari!</button>
+                                          </span>
+                                        </div><!-- /input-group -->
+                                    </form>
+                                  </div><!-- /.box-tools -->
+                              </div><!-- /.box-header -->
+                              <div class="box-body no-padding">
+                                  <table class="table table-hover">
+                                      <tr>
+                                          <th  class="text-center" width="65%">Nama </th>
+                                          <th  class="text-center">No Hp</th>
+                                          <th></th>
+                                      </tr>
+                                      <?php
+                                      $sql .= " LIMIT " . $current_page . ", 10";
+                                      $query = mysqli_query($con, $sql);
+                                      while($row = mysqli_fetch_array($query)) {
+                                      ?>
+                                      <tr>
+                                          <td class="text-center"><?php echo $row['nama'];?></td>
+                                          <td class="text-center"><?php echo $row['no_hp'];?></td>
+                                          <td class="text-center">
+                                          <a href="<?php echo base_url('penjual/kelola_kurir_ubah.php?id_petugas=' . $row['id_petugas']);?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> edit</a>
+                                          <a href="<?php echo base_url('penjual/kelola_kurir_hapus.php?id_petugas=' . $row['id_petugas']);?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> hapus</a>
+                                          </td>
+                                      </tr>
+                                      <?php
+                                      }
+                                      ?>
+                                  </table>
+                              </div><!-- /.box-body -->
+                              <div class="box-footer">
+                                  <?php
+                                  echo pagination(base_url('penjual/kelola_kurir.php'), $total_row, 10, $current_page, $query_string);
+                                  ?>
+                              </div><!-- box-footer -->
+                          </div><!-- /.box -->
+                      </div><!-- /.col -->
+                  </div><!-- /.row -->
+                </section>
+</div>
 
     <?php  require_once('../layout/footer.php'); ?>
