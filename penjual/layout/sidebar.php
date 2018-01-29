@@ -27,7 +27,7 @@
       </li>
 
       <li <?php echo (defined("menu_kelola_transaksi")) ? 'class="active"' : '' ; ?>>
-        <a href="#"><i class="fa fa-credit-card"></i> <span>Kelola Transaksi</span></a>
+        <a href="<?php echo base_url('penjual/kelola_transaksi.php');?>"><i class="fa fa-credit-card"></i> <span>Kelola Transaksi</span></a>
       </li>
 
       <li <?php echo (defined("menu_kelola_kurir")) ? 'class="active"' : '' ; ?>>

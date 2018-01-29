@@ -85,7 +85,7 @@ require_once('layout/header.php');
                                     <tr>
                                         <td><?php echo $row['nama'];?></td>
                                         <td><?php echo $row['kategori'];?></td>
-                                        <td><?php echo $row['harga'];?></td>
+                                        <td><?php echo format_uang($row['harga']);?></td>
                                         <td class="text-center"><img src="<?php echo base_url('uploads/foto/' . $row['foto']);?>" width="100" height="80"></td>
                                         <td class="text-center">
                                         <a href="<?php echo base_url('penjual/kelola_produk_ubah.php?no_produk=' . $row['no_produk']);?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> edit</a>
