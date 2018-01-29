@@ -5,8 +5,7 @@ require_once('../system/engine.php');
     define("SITE_TITLE", 'Produk list');
 
     $data = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM produk WHERE slug='" . mysqli_real_escape_string($con, $_GET['slug']) . "'"));
-    print_r($data);
-
+    
     require_once('../layout/header.php'); ?>
  
     <style type="text/css">
@@ -15,7 +14,6 @@ require_once('../system/engine.php');
         overflow: hidden;
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
-        max-height: 183px;
         min-height: 183px;
       }
       .image img{
@@ -49,7 +47,7 @@ require_once('../system/engine.php');
                   <div class="col-md-6 ">  
                          
                     <div class="image">
-                      <img src="<?php echo $data['foto'] ?>">
+                      <img src="<?php echo base_url('uploads/foto/' . $data['foto']); ?>">
                     </div>  
 
                   </div><!-- end col -->

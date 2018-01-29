@@ -90,7 +90,7 @@
               <div class="box box-solid">
                 <div class="box-body no-padding">
 
-                  <div class="image"><img src="<?php echo base_url('uploads/produk/').$res['gambar']; ?>"></div>
+                  <div class="image"><img src="<?php echo base_url('uploads/foto/' .$res['foto']); ?>"></div>
                 </div>
                 <div class="box-footer" style="padding-bottom: 0px">
                   <p><label><?php echo format_uang($res['harga']); ?></span></label></p>
