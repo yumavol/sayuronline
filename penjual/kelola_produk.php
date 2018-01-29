@@ -7,7 +7,7 @@ define("menu_kelola_produk", true);
 define("SITE_TITLE", 'Kelola Produk');
 
 
-$current_page = (!empty($_GET['page'])) ? $_GET['page'] : 0;
+$current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
 $total_row = 0;
 $query_string = $_GET;
 if(!empty($_GET['cari'])) {
@@ -78,7 +78,7 @@ require_once('layout/header.php');
                                         <th class="pull-right"></th>
                                     </tr> 
                                     <?php
-                                    $sql .= " LIMIT " . $current_page . ", 10";
+                                    $sql .= " LIMIT " . (($current_page - 1) * 10) . ", 10";
                                     $query = mysqli_query($con, $sql); 
                                     while($row = mysqli_fetch_array($query)) {
                                     ?>
