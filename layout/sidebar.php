@@ -5,8 +5,10 @@
             <?php
             if(get_session('tipe_user') == 'pembeli') {
             ?>
-            <li role="presentation"><a href="<?php echo base_url('produk');?>"><i class="fa fa-archive"></i> Produk</a></li>
-            <li role="presentation"><a href="<?php echo base_url('users/keranjang.php');?>"><i class="fa fa-shopping-cart"></i> Keranjang <?php echo (isi_keranjang() > 0) ? '<label class="label label-info">' . isi_keranjang() . '</label>' : '';?></a></li>
+            <li role="presentation" <?php echo defined('menu_produk') ? 'class="active"' : '';?>><a href="<?php echo base_url('produk');?>"><i class="fa fa-archive"></i> Produk</a></li>
+            <li role="presentation" <?php echo defined('menu_keranjang') ? 'class="active"' : '';?>><a href="<?php echo base_url('users/keranjang.php');?>"><i class="fa fa-shopping-cart"></i> Keranjang <?php echo (isi_keranjang() > 0) ? '<label class="label label-success">' . isi_keranjang() . '</label>' : '';?></a></li>
+            <li role="presentation" <?php echo defined('menu_transaksi') ? 'class="active"' : '';?>><a href="<?php echo base_url('users/transaksi.php');?>"><i class="fa fa-list"></i> Transaksi</a></li>
+
             <li role="presentation"><a href="<?php echo base_url('users/logout.php');?>"><i class="fa fa-sign-out"></i> Logout</a></li>
             <?php
             } else if(get_session('tipe_user')) {

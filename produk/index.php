@@ -4,7 +4,7 @@
 
   define('ON_KERANJANG', true);
   define("SITE_TITLE", 'Produk list');
-
+  define("menu_produk", true);
 
   $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
   $total_row = 0;

@@ -47,8 +47,10 @@ if(!empty($_GET['cari'])) {
 require_once('layout/header.php');
 
 function status_transaksi($status) {
-    if($status == 'Sedang Diproses') {
+    if($status == 'Menunggu Bukti Transfer') {
         return '<label class="label label-warning">' . $status . '</label>';
+    } elseif($status == 'Sedang Diproses') {
+        return '<label class="label label-info">' . $status . '</label>';
     } elseif($status == 'Sedang Dikirim') {
         return '<label class="label label-primary">' . $status . '</label>';
     } elseif($status == 'Berhasil') {

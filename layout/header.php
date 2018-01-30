@@ -90,9 +90,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-          <form class="navbar-form navbar-left" role="search">
+          <form class="navbar-form navbar-left" role="search" action="<?php echo base_url('produk/index.php') ?>" method="get">
             <div class="form-group has-feedback">
-              <form action="<?php echo base_url('produk/index.php') ?>" method="get"></form>
               <input class="form-control input-sm" name="cari" value="<?php echo $value_cari ?>" placeholder="Cari produk .." type="text">
               <span class="fa fa-search text-muted form-control-feedback"></span>
             </div>

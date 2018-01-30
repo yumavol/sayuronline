@@ -69,4 +69,4 @@ foreach($detail_transaksi as $dt_transaksi) {
 
 bersihkan_keranjang();
 
-redirect(base_url('users/pembayaran.php?no_transaksi=' . $no_transaksi));
+redirect(base_url('users/transaksi.php'));

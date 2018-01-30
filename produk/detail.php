@@ -3,6 +3,7 @@ require_once('../system/engine.php');
 
     define('ON_KERANJANG', true);
     define("SITE_TITLE", 'Produk list');
+    define("menu_produk", true);
 
     $data = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM produk WHERE slug='" . mysqli_real_escape_string($con, $_GET['slug']) . "'"));
     
@@ -31,6 +32,7 @@ require_once('../system/engine.php');
         <section class="content-header">
           <h1>
               Produk <small>Produk kami</small>
+              <a class="btn btn-sm btn-default pull-right" href="<?php echo base_url('produk');?>"><i class="fa fa-chevron-left"></i> Kembali</a>
           </h1>
         </section>
 
