@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 30, 2018 at 07:06 AM
+-- Generation Time: Jan 30, 2018 at 06:12 PM
 -- Server version: 5.6.35
 -- PHP Version: 5.6.30
 
@@ -31,7 +31,17 @@ CREATE TABLE `alamat` (
 --
 
 INSERT INTO `alamat` (`id_alamat`, `id_user`, `alamat`) VALUES
-(1, 1, 'Bandung');
+(1, 1, 'Bandung'),
+(2, 3, 'Bandung Coret'),
+(3, 3, 'Bandung Timur'),
+(4, 3, 'Basdasd'),
+(5, 3, 'Basdasd'),
+(6, 3, 'Basdasd'),
+(7, 3, 'Basdasd'),
+(8, 3, 'Basdasd'),
+(9, 3, 'Basdasd'),
+(10, 3, 'Basdasd'),
+(11, 3, 'Hehe');
 
 -- --------------------------------------------------------
 
@@ -55,7 +65,18 @@ CREATE TABLE `detail_transaksi` (
 INSERT INTO `detail_transaksi` (`no_detail_transaksi`, `no_produk`, `no_transaksi`, `harga`, `jumlah`, `subtotal`) VALUES
 (1, 2, 'testest', '10', 1, '150'),
 (2, 3, 'testest', '12', 1, '12'),
-(3, 1, 'testest', '12500', 1, '12500');
+(3, 1, 'testest', '12500', 1, '12500'),
+(11, 1, 'QVFCUABPZ8', '10000', 2, '20000'),
+(12, 2, 'QVFCUABPZ8', '12', 5, '60'),
+(13, 1, 'UCL71HVS4W', '10000', 2, '20000'),
+(14, 2, 'UCL71HVS4W', '12', 5, '60'),
+(15, 3, 'ONGJ6XIUCT', '12123', 1, '12123'),
+(16, 3, 'ZF7DP8MQ0N', '12123', 1, '12123'),
+(17, 3, 'UC0K6Y4EXS', '12123', 31, '375813'),
+(18, 3, 'ESI4A6CTN8', '12123', 1, '12123'),
+(19, 1, '6FHMCAZKL1', '10000', 20, '200000'),
+(20, 2, 'IDPBT6E95V', '12', 1, '12'),
+(21, 2, '6WOJI8DZG7', '12', 1, '12');
 
 -- --------------------------------------------------------
 
@@ -98,7 +119,11 @@ CREATE TABLE `pembayaran` (
 --
 
 INSERT INTO `pembayaran` (`no_transaksi`, `bank_tujuan`, `bank_asal`, `atas_nama`, `no_rekening`, `tanggal`, `jumlah`, `bukti_pembayaran`) VALUES
-('testest', 'BCA', 'Bankbon', 'Budi Baper', '0123', '2018-01-31', '10000', 'testest.jpg');
+('testest', 'BCA', 'Bankbon', 'Budi Baper', '0123', '2018-01-31', '10000', 'testest.jpg'),
+('IDPBT6E95V', 'BCA', 'asdsad', 'asdsa', '01010101', '2018-01-18', '10101', 'IDPBT6E95V.png'),
+('6WOJI8DZG7', 'BNI', 'asdsad', 'asdsa', '01010101', '2018-01-26', '10000', '6WOJI8DZG7.png'),
+('ZF7DP8MQ0N', 'BNI', 'Ibu', 'Budi Baper', '01010101', '2018-01-27', '231', 'ZF7DP8MQ0N.png'),
+('UC0K6Y4EXS', 'BCA', 'asdsad', 'Budi Baper', '0123', '2018-01-26', '15', 'UC0K6Y4EXS.png');
 
 -- --------------------------------------------------------
 
@@ -160,7 +185,7 @@ CREATE TABLE `transaksi` (
   `tanggal` date NOT NULL,
   `jumlah_kuantiti` int(5) NOT NULL,
   `total_harga` decimal(12,0) NOT NULL,
-  `status` enum('Sedang Diproses','Sedang Dikirim','Berhasil','Gagal') NOT NULL
+  `status` enum('Sedang Diproses','Sedang Dikirim','Berhasil','Gagal','Menunggu Bukti Transfer') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -169,7 +194,19 @@ CREATE TABLE `transaksi` (
 
 INSERT INTO `transaksi` (`no_transaksi`, `id_petugas`, `id_alamat`, `id_user`, `tanggal`, `jumlah_kuantiti`, `total_harga`, `status`) VALUES
 ('', NULL, 1, 1, '2018-01-29', 23, '23', 'Sedang Diproses'),
-('testest', 1, 1, 1, '2018-01-29', 1, '12', 'Sedang Diproses');
+('6FHMCAZKL1', NULL, 11, 3, '2018-01-30', 20, '200000', 'Menunggu Bukti Transfer'),
+('6WOJI8DZG7', NULL, 3, 3, '2018-01-30', 1, '12', 'Menunggu Bukti Transfer'),
+('ESI4A6CTN8', NULL, 10, 3, '2018-01-30', 1, '12123', 'Menunggu Bukti Transfer'),
+('EU6BXTCFRN', NULL, 1, 1, '2018-01-30', 7, '20060', 'Menunggu Bukti Transfer'),
+('IDPBT6E95V', NULL, 11, 3, '2018-01-30', 1, '12', 'Menunggu Bukti Transfer'),
+('ONGJ6XIUCT', NULL, 2, 3, '2018-01-30', 1, '12123', 'Menunggu Bukti Transfer'),
+('QVFCUABPZ8', NULL, 1, 1, '2018-01-30', 7, '20060', 'Menunggu Bukti Transfer'),
+('testest', 1, 1, 1, '2018-01-29', 1, '12', 'Sedang Diproses'),
+('UC0K6Y4EXS', NULL, 3, 3, '2018-01-30', 31, '375813', 'Sedang Diproses'),
+('UCL71HVS4W', NULL, 1, 1, '2018-01-30', 7, '20060', 'Menunggu Bukti Transfer'),
+('XRZHD9OPGJ', NULL, 1, 1, '2018-01-30', 7, '20060', 'Menunggu Bukti Transfer'),
+('YPES9TXVKI', NULL, 1, 1, '2018-01-30', 7, '20060', 'Menunggu Bukti Transfer'),
+('ZF7DP8MQ0N', NULL, 2, 3, '2018-01-30', 1, '12123', 'Sedang Diproses');
 
 -- --------------------------------------------------------
 
@@ -192,7 +229,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `nama`, `email`, `password`, `no_hp`, `tipe_user`) VALUES
-(1, 'admin', 'Administrator', 'irsyadfau27@gmail.com', '$2y$12$9k9D35jXdNXBKbPvVWVACebYxQAevyLFyP9TCRi.jqFItL5pfbbee', '08123456789', 'admin');
+(1, 'admin', 'Administrator', 'irsyadfau27@gmail.com', '$2y$12$ILm9c9gspjh5xeiabciSAukplwgqH.9DXEsFLoYCGKmBxo9pljWcW', '08123456789', 'admin'),
+(2, 'penjual', 'Penjual', 'aku@penjual.com', '$2y$12$ILm9c9gspjh5xeiabciSAukplwgqH.9DXEsFLoYCGKmBxo9pljWcW', '0123456789', 'penjual'),
+(3, 'pembeli', 'pembeli', 'aku@pembeli.com', '$2y$12$ILm9c9gspjh5xeiabciSAukplwgqH.9DXEsFLoYCGKmBxo9pljWcW', '0123456789', 'pembeli');
 
 --
 -- Indexes for dumped tables
@@ -264,12 +303,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `alamat`
 --
 ALTER TABLE `alamat`
-  MODIFY `id_alamat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_alamat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
-  MODIFY `no_detail_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `no_detail_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `kategori_produk`
 --
@@ -289,7 +328,7 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --

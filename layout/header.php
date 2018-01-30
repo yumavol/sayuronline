@@ -4,7 +4,9 @@ require_once('../system/keranjang.php');
 
 $value_cari = (isset($_GET['cari'])) ? $_GET['cari'] : '';
 
-
+if(get_session('id_user')) {
+  $data_user_login = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM user WHERE id_user='" . get_session('id_user') . "'"));
+}
 ?>
 <!DOCTYPE html>
 <!--
@@ -88,9 +90,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-          <form class="navbar-form navbar-left" role="search">
+          <form class="navbar-form navbar-left" role="search" action="<?php echo base_url('produk/index.php') ?>" method="get">
             <div class="form-group has-feedback">
-              <form action="<?php echo base_url('produk/index.php') ?>" method="get"></form>
               <input class="form-control input-sm" name="cari" value="<?php echo $value_cari ?>" placeholder="Cari produk .." type="text">
               <span class="fa fa-search text-muted form-control-feedback"></span>
             </div>
@@ -106,53 +107,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <!-- Menu Toggle Button -->
               <a href="<?php echo base_url('users/keranjang.php'); ?>" >
                 <i class="glyphicon glyphicon-shopping-cart"></i>
-                <span class="label label-danger"><?php echo isi_keranjang();?></span>
+                <?php echo (isi_keranjang() > 0) ? '<label class="label label-danger">' . isi_keranjang() . '</label>' : '';?>
               </a>
             </li>
-            <!-- User Account Menu -->
-            <li class="dropdown user user-menu">
-              <!-- Menu Toggle Button -->
-              <a href="#"  class="dropdown-toggle" data-toggle="dropdown">
-                <span class=""> 
-                  <i class="fa fa-user"></i>
-                  Yuma Yusuf
-                </span>
-              </a>
-              <ul class="dropdown-menu">
-                <!-- The user image in the menu -->
-                <li class="user-header">
-                  <span style="
-                    font-size: 70px;
-                    background: #fff;
-                    width: 100px;
-                    height: 100px;
-                    display: inline-block;
-                    border-radius: 50%;
-                    -webkit-touch-callout: none;
-                    -webkit-admin-select: none;
-                    -khtml-admin-select: none;
-                    -moz-admin-select: none;
-                    -ms-admin-select: none;
-                    admin-select: none;
 
-                  ">Y</span>
-
-                  <p>
-                    Yuma Yusuf
-                    <small>Selamat datang</small>
-                  </p>
-                </li>
-                <!-- Menu Footer-->
-                <li class="user-footer">
-                 <div class="pull-left">
-                  <a href="<?php echo base_url('users/user/pengaturan.php'); ?>" class="btn btn-sm btn-default btn-flat"><i class="fa fa-gear"></i> Setings</a>
-                </div>
-                <div class="pull-right">
-                  <a href="<?php echo base_url('users/user/login/destroy.php'); ?>" class="btn btn-default btn-sm btn-flat"><i class="fa fa-sign-out"></i> Sign out</a>
-                </div>
-                </li>
-              </ul>
-            </li>
           </ul>
         </div>
         <!-- /.navbar-custom-menu -->

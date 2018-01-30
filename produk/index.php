@@ -4,7 +4,7 @@
 
   define('ON_KERANJANG', true);
   define("SITE_TITLE", 'Produk list');
-
+  define("menu_produk", true);
 
   $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
   $total_row = 0;
@@ -69,8 +69,13 @@
         <!-- Main content -->
         <section class="content">
         <div class="row">
-        
-          <?php require_once('../layout/sidebar.php'); ?>
+          
+          <?php
+          if(has_flashdata('error')) {
+            echo alert_error(get_flashdata('error'));
+          }
+          require_once('../layout/sidebar.php');
+          ?>
           
           <div class="col-md-9">
           <?php $i = 1; 

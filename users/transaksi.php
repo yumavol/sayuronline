@@ -1,31 +1,37 @@
 <?php
-    require_once('../system/engine.php');
-    require_once('../system/keranjang.php');
+define("load_pagination", true);
+require_once('../system/engine.php');
 
-    define('ON_KERANJANG', true);
-    define("SITE_TITLE", 'Produk list');
-    define("menu_keranjang", true);
+if(!get_session('login')) {
+    redirect(base_url('login.php'));
+}
 
-    if(isset($_GET['hapus'])) {
-      hapus_keranjang($_GET['hapus']);
-      redirect(base_url('users/keranjang.php'));
+define('ON_KERANJANG', false);
+define("SITE_TITLE", 'Daftar Transaksi');
+define("menu_transaksi", true);
+
+require_once('../layout/header.php');
+
+function status_transaksi($status) {
+    if($status == 'Menunggu Bukti Transfer') {
+        return '<label class="label label-warning">' . $status . '</label>';
+    } elseif($status == 'Sedang Diproses') {
+        return '<label class="label label-info">' . $status . '</label>';
+    } elseif($status == 'Sedang Dikirim') {
+        return '<label class="label label-primary">' . $status . '</label>';
+    } elseif($status == 'Berhasil') {
+        return '<label class="label label-success">' . $status . '</label>';
+    } elseif($status == 'Gagal') {
+        return '<label class="label label-danger">' . $status . '</label>';
     }
+    return $status;
+}
+$current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
 
-    if(isset($_GET['update']) && isset($_GET['qty'])) {
-      update_keranjang($_GET['update'], $_GET['qty']);
-      die();
-    }
+$sql_transaksi = "SELECT * FROM transaksi WHERE id_user='" . get_session('id_user') . "' ORDER BY tanggal,no_transaksi DESC";
 
-    if(isset($_POST['id'])){
-      $produk_id = $_POST['id'];
-
-      tambah_keranjang($produk_id);
-
-
-    }
-    require_once('../layout/header.php');
-
-    ?>
+$total_row = mysqli_num_rows(mysqli_query($con, $sql_transaksi));
+?>
 
 
   <style type="text/css">
@@ -49,7 +55,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-              Keranjang <small>Keranjang Belanja Anda</small>
+              Transaksi <small>Daftar Transaksi Anda</small>
           </h1>
         </section>
 
@@ -75,33 +81,38 @@
             <div class="col-md-9">
               <div style="" class="box box-success">
                 <div class="box-header">
-                  <strong>Keranjang Belanja </strong>
+                  <strong>Daftar Transaksi</strong>
                 </div>  
                 <div class="box-body">
                   <div class="table-responsive">
                   <table class="table table-bordered">
-                    <tr>
-                      <th width="10%">Produk</th>
-                      <th>Nama</th> 
-                      <th width="18%">Harga</th>
-                      <th width="10%">Jumlah</th>
-                      <th width="10%"></th>
-                    </tr> 
-                    <?php
-                    foreach(daftar_keranjang() as $keranjang) {
-
-                      $data_produk = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM produk WHERE no_produk='" . $keranjang['id'] . "'"));
-                    ?>
+                    <thead>
                       <tr>
-                        <td><div class="img"><img src="<?php echo base_url('uploads/foto/' .$data_produk['foto']); ?>"></div></td>
-                        <td><a href="<?php echo base_url('produk/detail.php?slug=' . $data_produk['slug']);?>"><?php echo $data_produk['nama'];?></a></td> 
-                        <td><?php echo format_uang($data_produk['harga']); ?></td>
-                        <td class="text-center"> 
-                          <input type="number" data-id="<?php echo $keranjang['id'];?>" class="form-control jumlah_update" name="jumlah" value="<?php echo $keranjang['qty'];?>">
+                        <th width="12%">No. Transaksi</th>
+                        <th width="18%" class="text-center">Tanggal</th> 
+                        <th width="15%" class="text-center">Status</th>
+                        <th width="20%"></th>
+                      </tr> 
+                    </thead>
+                    <tbody>
+                      <?php
+                      $query = mysqli_query($con, $sql_transaksi . " LIMIT " . (($current_page - 1) * 10) . ", 10");
+                      while($row = mysqli_fetch_array($query)) {
+                      ?>
+                      <tr>
+                        <td><?php echo $row['no_transaksi'];?></td>
+                        <td class="text-center"><?php echo tanggal_indo($row['tanggal'], true);?></td>
+                        <td class="text-center"><?php echo status_transaksi($row['status'], true);?></td>
+                        <td class="text-center">
+                          <?php if($row['status'] == 'Menunggu Bukti Transfer') { ?>
+                          <a href="<?php echo base_url('users/pembayaran.php?no_transaksi=' . $row['no_transaksi']);?>" class="btn btn-sm btn-primary">Konfirmasi Pembayaran</a>
+                          <?php } ?>
                         </td>
-                        <td class="text-center"><a class="btn btn-xs btn-danger" href="<?php echo base_url('users/keranjang.php?hapus=' . $keranjang['id']);?>"><i class="fa fa-trash"></i> hapus</a></td>
                       </tr>
-                    <?php } ?> 
+                      <?php
+                      }
+                      ?>
+                    </tbody>
                   </table> 
                   </div><!-- tableressponsive -->
                   <!--
@@ -118,10 +129,9 @@
                   -->
                 </div><!--box body-->
                 <div class="box-footer">
-                <a href="<?php echo base_url('produk/') ?>" class="btn btn-default pull-left" ><i class="fa fa-shopping-bag"></i> Kembali berbelanja</a>
-                <?php if(isi_keranjang() > 0) { ?>
-                <button type="submit" value="1" name="submit" class="btn btn-primary pull-right" ><i class="fa fa-credit-card"></i> Checkout</button>
-                <?php } ?>
+                  <?php
+                  echo pagination(base_url('users/transaksi.php'), $total_row, 10, $current_page);
+                  ?>
                 </div><!--box footer-->
               </div><!--box-->   
             </div>

@@ -30,7 +30,7 @@ function insert_db($data = array(), $table = ''){
 
     $sql = "INSERT INTO `" . $table ."` (`" . implode("`, `", $column) . "`) VALUES (". implode(", ", $escaped) .")";
 
-    $query = mysqli_query($con, $sql);
+    mysqli_query($con, $sql);
 
     return mysqli_insert_id($con);
 }

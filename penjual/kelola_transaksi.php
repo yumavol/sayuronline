@@ -2,6 +2,12 @@
 define("load_pagination", true);
 require_once('../system/engine.php');
 
+if(!get_session('login')) {
+    redirect(base_url('login.php'));
+} else if(get_session('tipe_user') != 'penjual') {
+    set_flashdata('error', 'Anda tidak mempunyai hak untuk membuka halaman tersebut.');
+    redirect(base_url());
+}
 
 define("menu_kelola_transaksi", true);
 define("SITE_TITLE", 'Kelola Transaksi');
@@ -41,8 +47,10 @@ if(!empty($_GET['cari'])) {
 require_once('layout/header.php');
 
 function status_transaksi($status) {
-    if($status == 'Sedang Diproses') {
+    if($status == 'Menunggu Bukti Transfer') {
         return '<label class="label label-warning">' . $status . '</label>';
+    } elseif($status == 'Sedang Diproses') {
+        return '<label class="label label-info">' . $status . '</label>';
     } elseif($status == 'Sedang Dikirim') {
         return '<label class="label label-primary">' . $status . '</label>';
     } elseif($status == 'Berhasil') {

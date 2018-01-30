@@ -9,9 +9,9 @@
         <li class="header">MENU PENJUAL</li>
         <!-- Optionally, you can add icons to the links --> 
 
-      <li <?php echo (defined("menu_dashboard")) ? 'class="active"' : '' ; ?>>
+      <!-- <li <?php echo (defined("menu_dashboard")) ? 'class="active"' : '' ; ?>>
         <a href="<?php echo base_url('penjual') ?>"><i class="fa fa-th"></i> <span>Dasboard</span></a>
-      </li> 
+      </li> -->
 
       <li class="<?php echo (defined("menu_kelola_produk") || defined("menu_kelola_produk_kategori")) ? 'active' : '' ; ?> treeview">
         <a href="#">
@@ -34,7 +34,8 @@
         <a href="<?php echo base_url('penjual/kelola_kurir.php');?>"><i class="fa fa-truck"></i> <span>Kelola Petugas Kurir </span></a>
       </li>
 
-
+      <li><a href="<?php echo base_url('users/logout.php') ?>"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
+ 
       </ul>
       <!-- /.sidebar-menu -->
     </section>
