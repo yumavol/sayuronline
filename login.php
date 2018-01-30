@@ -1,4 +1,62 @@
-<?php require_once('system/engine.php'); ?>
+<?php
+require_once('system/engine.php');
+
+$form_error = [];
+
+if(!empty($_POST)) {
+  trim_validate($_POST);
+
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+
+  // validasi
+  if(is_error($username, 'required')) {
+    $form_error[] = 'Username wajib diisi.';
+  }
+  if(is_error($password, 'required')) {
+    $form_error[] = 'Password wajib diisi.';
+  }
+
+  if(is_error($username, 'min_length[5]|max_length[25]')) {
+    $form_error[] = 'Nama minimal 5 karakter dan maksimal 25 karakter.';
+  }
+  if(is_error($password, 'min_length[6]')) {
+    $form_error[] = 'Deskripsi minimal 6 karakter.';
+  }
+
+  if(empty($form_error)) {
+    $username = mysqli_real_escape_string($con, $username);
+    $password = mysqli_real_escape_string($con, $password);
+
+    // cek user
+    $query = mysqli_query($con, "SELECT * FROM user WHERE username='" . $username . "'");
+
+    if(mysqli_num_rows($query) > 0) {
+      $data = mysqli_fetch_array($query);
+
+      if(password_verify($password, $data['password'])) {
+        $data_login = array(
+          'id_user' => $data['id_user'],
+          'tipe_user' => $data['tipe_user'],
+          'login' => true
+        );
+        set_session($data_login);
+        if($data['tipe_user'] == 'admin') {
+          redirect(base_url('admin'));
+        } else if($data['tipe_user'] == 'penjual') {
+          redirect(base_url('penjual'));
+        } else {
+          redirect(base_url());
+        }
+      } else {
+        $form_error[] = 'Username/Password salah.';
+      }
+    } else {
+      $form_error[] = 'User tidak ditemukan.';
+    }
+  }
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,10 +97,13 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-
- 
     <p class="login-box-msg">Silahkan Login Untuk Melanjutkan</p>
-
+    <?php 
+    // validasi
+    if(!empty($form_error)) {
+      echo alert_error(implode($form_error, '<br/>'));
+    }
+    ?>
     <form action="" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" name="username" placeholder="Username">

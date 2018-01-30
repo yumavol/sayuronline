@@ -7,8 +7,11 @@ function no_transaksi() {
     return substr(str_shuffle($karakter), 0, 10);
 }
 
+if(!get_session('login')) {
+    redirect(base_url('login.php'));
+}
 $id_alamat = 1;
-$id_user = 1;
+$id_user = get_session('id_user');
 
 $total = 0;
 $jumlah_kuantiti = 0;

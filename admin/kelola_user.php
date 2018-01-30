@@ -1,6 +1,12 @@
 <?php
 require_once('../system/engine.php');
 
+if(!get_session('login')) {
+    redirect(base_url('login.php'));
+} else if(get_session('tipe_user') != 'admin') {
+    set_flashdata('error', 'Anda tidak mempunyai hak untuk membuka halaman tersebut.');
+    redirect(base_url());
+}
 
 define("menu_kelola_user", true);
 define("SITE_TITLE", 'Kelola User');

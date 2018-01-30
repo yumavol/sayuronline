@@ -1,4 +1,3 @@
- 
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -116,42 +115,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
-      <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-         
-
-        <!-- User Account Menu -->
-          <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- The user image in the navbar-->
-              <span><i class="fa fa-users"></i></span>
-              <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Yuma Yusuf</span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
-              <li class="user-body text-center"> 
-
-                <p>
-                  Yuma Yusuf
-                </p>
-                  <small>administrator</small>
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="<?php echo base_url('admin/profil'); ?>" class="btn btn-default btn-sm btn-flat"><i class="fa fa-gear"></i> Setings</a>
-                </div>
-                <div class="pull-right">
-                  <a href="<?php echo base_url('admin/login/destroy');?>" class="btn btn-sm btn-default btn-flat"><i class="fa fa-sign-out"></i> Log out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
     </nav>
   </header>
   <?php require_once('sidebar.php'); ?>

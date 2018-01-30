@@ -1,6 +1,10 @@
 <?php
 require_once('../system/engine.php');
 
+if(get_session('tipe_user') != 'penjual') {
+    set_flashdata('error', 'Anda tidak mempunyai hak untuk membuka halaman tersebut.');
+    redirect(base_url());
+}
 
 define("menu_dashboard", true);
 define("SITE_TITLE", 'Dashboard Penjual');

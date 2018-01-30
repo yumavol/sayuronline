@@ -55,6 +55,7 @@
         <!-- Main content -->
         <form method="post" action="<?php echo base_url('users/keranjang_proses.php') ?>">
         <section class="content">
+          <div class="row">
             <?php
                 if(has_flashdata('sukses')){
                     echo alert_sukses(get_flashdata('sukses')); 
@@ -69,55 +70,59 @@
                     echo alert_info(get_flashdata('info'));    
                 }
             ?>
-            <div style="" class="box box-primary">
-              <div class="box-header">
-                <strong>Keranjang belanja </strong>
-              </div>  
-              <div class="box-body">
-                <div class="table-responsive">
-                <table class="table table-bordered">
-                  <tr>
-                    <th width="10%">Produk</th>
-                    <th>Nama</th> 
-                    <th width="18%">Harga</th>
-                    <th width="10%">Jumlah</th>
-                    <th width="10%"></th>
-                  </tr> 
-                  <?php
-                  foreach(daftar_keranjang() as $keranjang) {
-
-                    $data_produk = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM produk WHERE no_produk='" . $keranjang['id'] . "'"));
-                  ?>
+            <?php require_once('../layout/sidebar.php'); ?>
+            <div class="col-md-9">
+              <div style="" class="box box-primary">
+                <div class="box-header">
+                  <strong>Keranjang belanja </strong>
+                </div>  
+                <div class="box-body">
+                  <div class="table-responsive">
+                  <table class="table table-bordered">
                     <tr>
-                      <td><div class="img"><img src="<?php echo base_url('uploads/foto/' .$data_produk['foto']); ?>"></div></td>
-                      <td><a href="<?php echo base_url('produk/detail.php?slug=' . $data_produk['slug']);?>"><?php echo $data_produk['nama'];?></a></td> 
-                      <td><?php echo format_uang($data_produk['harga']); ?></td>
-                      <td class="text-center"> 
-                        <input type="number" data-id="<?php echo $keranjang['id'];?>" class="form-control jumlah_update" name="jumlah" value="<?php echo $keranjang['qty'];?>">
-                      </td>
-                      <td class="text-center"><a class="btn btn-xs btn-danger" href="<?php echo base_url('users/keranjang.php?hapus=' . $keranjang['id']);?>"><i class="fa fa-trash"></i> hapus</a></td>
-                    </tr>
-                  <?php } ?> 
-                </table> 
-                </div><!-- tableressponsive -->
-                <!--
-                <div class="col-md-4 col-md-offset-8">
-                  <div class="row">
-                    <div class="col-md-7"><strong>Jumlah Produk</strong></div>
-                    <div class="col-md-5">: 5</div>
+                      <th width="10%">Produk</th>
+                      <th>Nama</th> 
+                      <th width="18%">Harga</th>
+                      <th width="10%">Jumlah</th>
+                      <th width="10%"></th>
+                    </tr> 
+                    <?php
+                    foreach(daftar_keranjang() as $keranjang) {
+
+                      $data_produk = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM produk WHERE no_produk='" . $keranjang['id'] . "'"));
+                    ?>
+                      <tr>
+                        <td><div class="img"><img src="<?php echo base_url('uploads/foto/' .$data_produk['foto']); ?>"></div></td>
+                        <td><a href="<?php echo base_url('produk/detail.php?slug=' . $data_produk['slug']);?>"><?php echo $data_produk['nama'];?></a></td> 
+                        <td><?php echo format_uang($data_produk['harga']); ?></td>
+                        <td class="text-center"> 
+                          <input type="number" data-id="<?php echo $keranjang['id'];?>" class="form-control jumlah_update" name="jumlah" value="<?php echo $keranjang['qty'];?>">
+                        </td>
+                        <td class="text-center"><a class="btn btn-xs btn-danger" href="<?php echo base_url('users/keranjang.php?hapus=' . $keranjang['id']);?>"><i class="fa fa-trash"></i> hapus</a></td>
+                      </tr>
+                    <?php } ?> 
+                  </table> 
+                  </div><!-- tableressponsive -->
+                  <!--
+                  <div class="col-md-4 col-md-offset-8">
+                    <div class="row">
+                      <div class="col-md-7"><strong>Jumlah Produk</strong></div>
+                      <div class="col-md-5">: 5</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-7"><strong>Total</strong></div>
+                      <div class="col-md-5">: 120000</div>
+                    </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-7"><strong>Total</strong></div>
-                    <div class="col-md-5">: 120000</div>
-                  </div>
-                </div>
-                -->
-              </div><!--box body-->
-              <div class="box-footer">
-              <a href="<?php echo base_url('produk/') ?>" class="btn btn-default pull-left" ><i class="fa fa-shopping-bag"></i> Kembali berbelanja</a>
-              <button type="submit" value="1" name="submit" class="btn btn-primary pull-right" ><i class="fa fa-credit-card"></i> Checkout</button>
-              </div><!--box footer-->
-            </div><!--box-->   
+                  -->
+                </div><!--box body-->
+                <div class="box-footer">
+                <a href="<?php echo base_url('produk/') ?>" class="btn btn-default pull-left" ><i class="fa fa-shopping-bag"></i> Kembali berbelanja</a>
+                <button type="submit" value="1" name="submit" class="btn btn-primary pull-right" ><i class="fa fa-credit-card"></i> Checkout</button>
+                </div><!--box footer-->
+              </div><!--box-->   
+            </div>
+          </div>
         </section><!-- /.content -->
         </form>
         </div><!-- /.container -->
