@@ -18,14 +18,14 @@ require_once('layout/header.php');
 $no_transaksi = mysqli_real_escape_string($con, $_GET['no_transaksi']);
 
 $sql_info = "
-SELECT 
+SELECT
 user.nama as nama_pembeli, user.email, user.no_hp as no_hp_pembeli,
 petugas_kurir.nama as nama_kurir, petugas_kurir.no_hp as no_hp_kurir,
 alamat.alamat,
 transaksi.*
 FROM transaksi
 JOIN alamat ON alamat.id_alamat=transaksi.id_alamat
-JOIN user ON user.id_user=user.id_user
+JOIN user ON user.id_user=transaksi.id_user
 LEFT JOIN petugas_kurir ON petugas_kurir.id_petugas=transaksi.id_petugas
 WHERE transaksi.no_transaksi='" . $no_transaksi . "'";
 $data_transaksi = mysqli_fetch_array(mysqli_query($con, $sql_info));
@@ -66,10 +66,10 @@ $data_transaksi = mysqli_fetch_array(mysqli_query($con, $sql_info));
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
-          Kurir
+          Kurir :
           <address>
             <strong><?php echo $data_transaksi['nama_kurir'];?></strong><br>
-            Phone: <?php echo $data_transaksi['no_hp_kurir'];?>
+            Phone : <?php echo $data_transaksi['no_hp_kurir'];?>
           </address>
         </div>
         <!-- /.col -->
@@ -90,7 +90,7 @@ $data_transaksi = mysqli_fetch_array(mysqli_query($con, $sql_info));
             </thead>
             <tbody>
             <?php
-            $sql_detail_transaksi = "SELECT produk.nama as nama_produk, detail_transaksi.* FROM detail_transaksi 
+            $sql_detail_transaksi = "SELECT produk.nama as nama_produk, detail_transaksi.* FROM detail_transaksi
             JOIN produk ON produk.no_produk=detail_transaksi.no_produk
             WHERE detail_transaksi.no_transaksi='" . $no_transaksi . "'";
             $query_detail = mysqli_query($con, $sql_detail_transaksi);
@@ -136,7 +136,7 @@ $data_transaksi = mysqli_fetch_array(mysqli_query($con, $sql_info));
     <div class="clearfix"></div>
   </div>
   <!-- /.content-wrapper -->
-    <?php 
+    <?php
     $js = array(
         'assets/js/penjual.js',
     );

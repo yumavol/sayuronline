@@ -12,6 +12,8 @@ define("menu_transaksi", true);
 
 require_once('../layout/header.php');
 
+
+
 function status_transaksi($status) {
     if($status == 'Menunggu Bukti Transfer') {
         return '<label class="label label-warning">' . $status . '</label>';
@@ -82,17 +84,18 @@ $total_row = mysqli_num_rows(mysqli_query($con, $sql_transaksi));
               <div style="" class="box box-success">
                 <div class="box-header">
                   <strong>Daftar Transaksi</strong>
-                </div>  
+                </div>
                 <div class="box-body">
                   <div class="table-responsive">
                   <table class="table table-bordered">
                     <thead>
                       <tr>
                         <th width="12%">No. Transaksi</th>
-                        <th width="18%" class="text-center">Tanggal</th> 
+                        <th width="18%" class="text-center">Tanggal</th>
                         <th width="15%" class="text-center">Status</th>
                         <th width="20%"></th>
-                      </tr> 
+                        <th width="20%"></th>
+                      </tr>
                     </thead>
                     <tbody>
                       <?php
@@ -104,6 +107,11 @@ $total_row = mysqli_num_rows(mysqli_query($con, $sql_transaksi));
                         <td class="text-center"><?php echo tanggal_indo($row['tanggal'], true);?></td>
                         <td class="text-center"><?php echo status_transaksi($row['status'], true);?></td>
                         <td class="text-center">
+
+                          <a href="<?php echo base_url('users/transaksi_detail.php?no_transaksi=' . $row['no_transaksi']);?>" class="btn btn-sm btn-success">Detail Transaksi</a>
+
+                        </td>
+                        <td class="text-center">
                           <?php if($row['status'] == 'Menunggu Bukti Transfer') { ?>
                           <a href="<?php echo base_url('users/pembayaran.php?no_transaksi=' . $row['no_transaksi']);?>" class="btn btn-sm btn-primary">Konfirmasi Pembayaran</a>
                           <?php } ?>
@@ -113,7 +121,7 @@ $total_row = mysqli_num_rows(mysqli_query($con, $sql_transaksi));
                       }
                       ?>
                     </tbody>
-                  </table> 
+                  </table>
                   </div><!-- tableressponsive -->
                   <!--
                   <div class="col-md-4 col-md-offset-8">
@@ -133,7 +141,7 @@ $total_row = mysqli_num_rows(mysqli_query($con, $sql_transaksi));
                   echo pagination(base_url('users/transaksi.php'), $total_row, 10, $current_page);
                   ?>
                 </div><!--box footer-->
-              </div><!--box-->   
+              </div><!--box-->
             </div>
           </div>
         </section><!-- /.content -->
