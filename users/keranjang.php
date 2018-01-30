@@ -16,7 +16,7 @@
     }
 
     if(isset($_POST['id'])){
-      $produk_id = $_POST['id']; 
+      $produk_id = $_POST['id'];
 
       tambah_keranjang($produk_id);
 
@@ -53,21 +53,21 @@
         </section>
 
         <!-- Main content -->
-        <form method="post" action="<?php echo base_url('users/keranjang_proses.php') ?>">
+        <form method="post" action="<?php echo base_url('users/isi_alamat.php') ?>">
         <section class="content">
           <div class="row">
             <?php
                 if(has_flashdata('sukses')){
-                    echo alert_sukses(get_flashdata('sukses')); 
-                } 
-                if(has_flashdata('error')){    
-                    echo alert_error(get_flashdata('error'));  
+                    echo alert_sukses(get_flashdata('sukses'));
+                }
+                if(has_flashdata('error')){
+                    echo alert_error(get_flashdata('error'));
                 }
                 if(has_flashdata('warning')){
-                    echo alert_warning(get_flashdata('warning'));  
+                    echo alert_warning(get_flashdata('warning'));
                 }
                 if(has_flashdata('info')){
-                    echo alert_info(get_flashdata('info'));    
+                    echo alert_info(get_flashdata('info'));
                 }
             ?>
             <?php require_once('../layout/sidebar.php'); ?>
@@ -140,11 +140,10 @@
               dataType:'json',
               data: {update : keranjang_id, qty : value} ,
               url: uri,
-              complete :function(data){ 
-                  location.reload();         
+              complete :function(data){
+                  location.reload();
               }
 
           });
       });
     </script>
-    
