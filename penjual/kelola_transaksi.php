@@ -93,6 +93,7 @@ function status_transaksi($status) {
                                           <div class="input-group-btn ">
                                             <select class="form-control" name="status">
                                                 <option value="" <?php echo ($status == '') ? 'selected' : '';?>>Semua</option>
+                                                <option value="Menunggu Bukti Transfer" <?php echo ($status == 'Menunggu Bukti Transfer') ? 'selected' : '';?>>Menunggu Bukti Transfer</option>
                                                 <option value="Sedang Diproses" <?php echo ($status == 'Sedang Diproses') ? 'selected' : '';?>>Sedang Diproses</option>
                                                 <option value="Sedang Dikirim" <?php echo ($status == 'Sedang Dikirim') ? 'selected' : '';?>>Sedang Dikirim</option>
                                                 <option value="Berhasil" <?php echo ($status == 'Berhasil') ? 'selected' : '';?>>Berhasil</option>

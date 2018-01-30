@@ -22,7 +22,9 @@
 
 
     }
-    require_once('../layout/header.php'); ?>
+    require_once('../layout/header.php');
+
+    ?>
 
 
   <style type="text/css">
@@ -51,7 +53,7 @@
         </section>
 
         <!-- Main content -->
-        <form method="post" action="<?php echo base_url('users/user/checkout_proses.php') ?>">
+        <form method="post" action="<?php echo base_url('users/keranjang_proses.php') ?>">
         <section class="content">
             <?php
                 if(has_flashdata('sukses')){

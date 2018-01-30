@@ -20,5 +20,15 @@ function hapus_keranjang($produk_id) {
 }
 
 function daftar_keranjang() {
-    return $_SESSION['keranjang'];
+    return isset($_SESSION['keranjang']) ? $_SESSION['keranjang'] : array();
+}
+
+function bersihkan_keranjang() {
+    if(isset($_SESSION['keranjang'])) {
+        unset($_SESSION['keranjang']);
+    }
+}
+
+function isi_keranjang() {
+    return isset($_SESSION['keranjang']) ? count($_SESSION['keranjang']) : 0;
 }

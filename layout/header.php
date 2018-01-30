@@ -1,7 +1,7 @@
-<?php ob_start(); ?>
+<?php
+ob_start(); 
+require_once('../system/keranjang.php');
 
-
-<?php  
 $value_cari = (isset($_GET['cari'])) ? $_GET['cari'] : '';
 
 
@@ -106,7 +106,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <!-- Menu Toggle Button -->
               <a href="<?php echo base_url('users/keranjang.php'); ?>" >
                 <i class="glyphicon glyphicon-shopping-cart"></i>
-                <span class="label label-danger">5</span>
+                <span class="label label-danger"><?php echo isi_keranjang();?></span>
               </a>
             </li>
             <!-- User Account Menu -->
