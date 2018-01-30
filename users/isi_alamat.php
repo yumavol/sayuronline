@@ -118,10 +118,6 @@
               </div>
               <div class="box-body">
                 <div class="form-group">
-                  <label for="nama-penerima">Name Penerima</label>
-                  <input type="text" name="nama-penerima" class="form-control" id="nama-penerima">
-                </div>
-                <div class="form-group">
                   <label for="alamat-tujuan">Alamat Pengiriman</label>
                   <select name="alamat-tujuan" class="form-control" id="alamat-tujuan" onchange="valAlamat1()" required>
                     <option value="">-</option>
