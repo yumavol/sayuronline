@@ -65,27 +65,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <span class="sr-only">Toggle navigation</span>
       </a>
      <!-- Navbar Right Menu -->
-          <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-             
-
-              <!-- User Account Menu -->
-              <li class="dropdown" style="margin-right: 20px;">
-                <!-- Menu Toggle Button -->
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <!-- The user image in the navbar-->
-                  <span><i class="fa fa-users"></i></span>
-                  <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">posisi - Nama</span>
-                </a>
-                 <ul class="dropdown-menu" role="menu">
-                   <li><a href="#"><i class="fa fa-gear"></i> Pengaturan</a></li>
-                   <li class="divider"></li>
-                   <li><a href="<?php echo base_url('login/pegawai/destroy.php'); ?>"><i class="fa fa-sign-out"></i> Log out</a></li>
-                 </ul>
-              </li>
-            </ul>
-          </div>
         </nav>
       </header> 
 

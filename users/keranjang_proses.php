@@ -10,8 +10,23 @@ function no_transaksi() {
 if(!get_session('login')) {
     redirect(base_url('login.php'));
 }
-$id_alamat = 1;
+
+$id_alamat = 0;
 $id_user = get_session('id_user');
+
+if(empty(trim($_POST['id_alamat']))) {
+    // insert alamat baru
+    $alamat_baru = $_POST['alamat_baru'];
+    $data_alamat = array(
+        'id_user' => $id_user,
+        'alamat' => $alamat_baru
+    );
+    //$id_alamat = insert_db($data_alamat, 'alamat');
+    insert_db($data_alamat, 'alamat');
+    $id_alamat = mysqli_fetch_array(mysqli_query($con, "SELECT LAST_INSERT_ID()"))[0];
+} else {
+    $id_alamat = $_POST['id_alamat'];
+}
 
 $total = 0;
 $jumlah_kuantiti = 0;
@@ -53,3 +68,5 @@ foreach($detail_transaksi as $dt_transaksi) {
 }
 
 bersihkan_keranjang();
+
+redirect(base_url('users/pembayaran.php?no_transaksi=' . $no_transaksi));

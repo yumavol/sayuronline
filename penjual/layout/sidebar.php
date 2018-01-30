@@ -34,7 +34,8 @@
         <a href="<?php echo base_url('penjual/kelola_kurir.php');?>"><i class="fa fa-truck"></i> <span>Kelola Petugas Kurir </span></a>
       </li>
 
-
+      <li><a href="<?php echo base_url('users/logout.php') ?>"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
+ 
       </ul>
       <!-- /.sidebar-menu -->
     </section>

@@ -141,7 +141,7 @@
               data: {update : keranjang_id, qty : value} ,
               url: uri,
               complete :function(data){
-                  location.reload();
+                  //location.reload();
               }
 
           });
