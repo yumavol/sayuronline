@@ -118,7 +118,9 @@
                 </div><!--box body-->
                 <div class="box-footer">
                 <a href="<?php echo base_url('produk/') ?>" class="btn btn-default pull-left" ><i class="fa fa-shopping-bag"></i> Kembali berbelanja</a>
+                <?php if(isi_keranjang() > 0) { ?>
                 <button type="submit" value="1" name="submit" class="btn btn-primary pull-right" ><i class="fa fa-credit-card"></i> Checkout</button>
+                <?php } ?>
                 </div><!--box footer-->
               </div><!--box-->   
             </div>
