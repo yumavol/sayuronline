@@ -7,7 +7,7 @@
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">MENU PENJUAL</li>
-        <!-- Optionally, you can add icons to the links --> 
+        <!-- Optionally, you can add icons to the links -->
 
       <!-- <li <?php echo (defined("menu_dashboard")) ? 'class="active"' : '' ; ?>>
         <a href="<?php echo base_url('penjual') ?>"><i class="fa fa-th"></i> <span>Dasboard</span></a>
@@ -33,9 +33,12 @@
       <li <?php echo (defined("menu_kelola_kurir")) ? 'class="active"' : '' ; ?>>
         <a href="<?php echo base_url('penjual/kelola_kurir.php');?>"><i class="fa fa-truck"></i> <span>Kelola Petugas Kurir </span></a>
       </li>
+      <li <?php echo (defined("menu_pengaturan_akun")) ? 'class="active"' : '' ; ?>>
+        <a href="<?php echo base_url('penjual/pengaturan_akun.php');?>"><i class="fa fa-user"></i> <span>Pengaturan Akun</span></a>
+      </li>
 
       <li><a href="<?php echo base_url('users/logout.php') ?>"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
- 
+
       </ul>
       <!-- /.sidebar-menu -->
     </section>

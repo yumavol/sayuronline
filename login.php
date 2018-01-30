@@ -21,7 +21,7 @@ if(!empty($_POST)) {
     $form_error[] = 'Nama minimal 5 karakter dan maksimal 25 karakter.';
   }
   if(is_error($password, 'min_length[6]')) {
-    $form_error[] = 'Deskripsi minimal 6 karakter.';
+    $form_error[] = 'Password minimal 6 karakter.';
   }
 
   if(empty($form_error)) {
@@ -98,7 +98,7 @@ if(!empty($_POST)) {
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Silahkan Login Untuk Melanjutkan</p>
-    <?php 
+    <?php
     // validasi
     if(!empty($form_error)) {
       echo alert_error(implode($form_error, '<br/>'));
@@ -114,14 +114,14 @@ if(!empty($_POST)) {
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <br>
-      <div class="form-group">       
+      <div class="form-group">
         <button type="submit" class="btn btn-danger btn-block btn-flat">Sign In</button>
-      </div>   
+      </div>
         <!-- /.col -->
       </div>
     </form>
 
-  
+
 
   </div>
   <!-- /.login-box-body -->
@@ -132,15 +132,12 @@ if(!empty($_POST)) {
 <script src="<?php echo base_url('assets/plugins/jquery/dist/jquery.min.js'); ?>"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url('assets/plugins/bootstrap/dist/js/bootstrap.min.js'); ?>"></script>
- 
+
 
 
 <script type="text/javascript">
- 
+
 
 </script>
 </body>
 </html>
-
-
-
