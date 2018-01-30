@@ -9,9 +9,9 @@
         <li class="header">MENU PENJUAL</li>
         <!-- Optionally, you can add icons to the links --> 
 
-      <li <?php echo (defined("menu_dashboard")) ? 'class="active"' : '' ; ?>>
+      <!-- <li <?php echo (defined("menu_dashboard")) ? 'class="active"' : '' ; ?>>
         <a href="<?php echo base_url('penjual') ?>"><i class="fa fa-th"></i> <span>Dasboard</span></a>
-      </li> 
+      </li> -->
 
       <li class="<?php echo (defined("menu_kelola_produk") || defined("menu_kelola_produk_kategori")) ? 'active' : '' ; ?> treeview">
         <a href="#">

@@ -8,6 +8,8 @@ if(!get_session('login')) {
     redirect(base_url());
 }
 
+redirect(base_url('admin/kelola_user.php'));
+
 define("menu_dashboard", true);
 define("SITE_TITLE", 'Selamat Datang');
 

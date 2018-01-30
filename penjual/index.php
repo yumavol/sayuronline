@@ -6,6 +6,8 @@ if(get_session('tipe_user') != 'penjual') {
     redirect(base_url());
 }
 
+redirect(base_url('penjual/kelola_produk.php'));
+
 define("menu_dashboard", true);
 define("SITE_TITLE", 'Dashboard Penjual');
 
