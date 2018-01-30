@@ -39,6 +39,11 @@
     .img img{
       width: 100%;
     }
+    .pemisah {
+      margin: 0 0 10px 0;
+    }
+
+
   </style>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -48,12 +53,14 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-              Keranjang <small>Keranjang belanja anda</small>
+              Data Pengiriman <small>#</small>
+              <a href="<?php echo base_url('users/keranjang') ?>" class="btn btn-default pull-right" ><i class="glyphicon glyphicon-shopping-cart"></i> Kembali</a>
           </h1>
+
         </section>
 
         <!-- Main content -->
-        <form method="post" action="<?php echo base_url('users/isi_alamat.php') ?>">
+        <form method="post" action="<?php echo base_url('users/pembayaran.php') ?>">
         <section class="content">
             <?php
                 if(has_flashdata('sukses')){
@@ -71,51 +78,67 @@
             ?>
             <div style="" class="box box-primary">
               <div class="box-header">
-                <strong>Keranjang belanja </strong>
+                <h3 class="box-title">Rincian Transaksi</h3>
               </div>
               <div class="box-body">
                 <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-striped">
                   <tr>
-                    <th width="10%">Produk</th>
                     <th>Nama</th>
                     <th width="18%">Harga</th>
-                    <th width="10%">Jumlah</th>
-                    <th width="10%"></th>
+                    <th width="10%">Qty</th>
+                    <th width="10%">Sub Total</th>
                   </tr>
                   <?php
+                  $totalharga=0;
                   foreach(daftar_keranjang() as $keranjang) {
 
                     $data_produk = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM produk WHERE no_produk='" . $keranjang['id'] . "'"));
                   ?>
                     <tr>
-                      <td><div class="img"><img src="<?php echo base_url('uploads/foto/' .$data_produk['foto']); ?>"></div></td>
-                      <td><a href="<?php echo base_url('produk/detail.php?slug=' . $data_produk['slug']);?>"><?php echo $data_produk['nama'];?></a></td>
+                      <td><?php echo $data_produk['nama'];?></td>
                       <td><?php echo format_uang($data_produk['harga']); ?></td>
-                      <td class="text-center">
-                        <input type="number" data-id="<?php echo $keranjang['id'];?>" class="form-control jumlah_update" name="jumlah" value="<?php echo $keranjang['qty'];?>">
+                      <td>
+                        <?php echo $keranjang['qty'];?>
                       </td>
-                      <td class="text-center"><a class="btn btn-xs btn-danger" href="<?php echo base_url('users/keranjang.php?hapus=' . $keranjang['id']);?>"><i class="fa fa-trash"></i> hapus</a></td>
-                    </tr>
-                  <?php } ?>
+                      <td><?php echo format_uang($data_produk['harga']*$keranjang['qty']); ?></td>
+                  <?php
+                    $totalharga = $totalharga + ($data_produk['harga'] * $keranjang['qty']) ;
+                } ?>
+                <tr>
+                  <th colspan="3  ">Total</th>
+                  <th width="18%"><?php echo format_uang($totalharga) ?></th>
+                </tr>
                 </table>
-                </div><!-- tableressponsive -->
-                <!--
-                <div class="col-md-4 col-md-offset-8">
-                  <div class="row">
-                    <div class="col-md-7"><strong>Jumlah Produk</strong></div>
-                    <div class="col-md-5">: 5</div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-7"><strong>Total</strong></div>
-                    <div class="col-md-5">: 120000</div>
-                  </div>
                 </div>
-                -->
               </div><!--box body-->
+              <hr class="pemisah">
+              <div class="box-header">
+              <h3 class="box-title">Data Pengiriman</h3>
+              </div>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="nama-penerima">Name Penerima</label>
+                  <input type="text" name="nama-penerima" class="form-control" id="nama-penerima">
+                </div>
+                <div class="form-group">
+                  <label for="alamat-tujuan">Alamat Pengiriman</label>
+                  <select name="alamat-tujuan" class="form-control" id="alamat-tujuan" onchange="valAlamat1()" required>
+                    <option value="">-</option>
+                    <option value="Alamat-1">Alamat 1</option>
+                    <option value="Alamat-2">Alamat 2</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="alamat-baru">Alamat Baru</label>
+                  <input type="text" name="alamat-baru" class="form-control" id="alamat-baru">
+                  <p class="help-block pull-right">Alamat baru akan ditambahkan ke list alamat</p>
+                </div>
+
+              </div>
               <div class="box-footer">
-              <a href="<?php echo base_url('produk/') ?>" class="btn btn-default pull-left" ><i class="fa fa-shopping-bag"></i> Kembali berbelanja</a>
-              <button type="submit" value="1" name="submit" class="btn btn-primary pull-right" ><i class="fa fa-credit-card"></i> Checkout</button>
+
+              <button type="submit" value="1" name="submit" class="btn btn-primary pull-right" ><i class="fa fa-credit-card"></i> Bayar</button>
               </div><!--box footer-->
             </div><!--box-->
         </section><!-- /.content -->
@@ -126,6 +149,16 @@
 
     <?php  require_once('../layout/footer.php'); ?>
     <script type="text/javascript">
+    function valAlamat1() {
+      var stat ="";
+      var alamat_value = document.getElementById('alamat-tujuan').value;
+      if(alamat_value == '') {
+        $( "#alamat-baru" ).prop( "disabled", false );
+      } else {
+        $( "#alamat-baru" ).prop( "disabled", true );
+      }
+
+    }
       $('.jumlah_update').on('change', function() {
           var uri = "<?php echo base_url('users/keranjang.php'); ?>";
           var keranjang_id = $(this).data('id');
@@ -141,4 +174,6 @@
 
           });
       });
+
+
     </script>
