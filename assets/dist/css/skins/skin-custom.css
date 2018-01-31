@@ -146,7 +146,7 @@
   border-bottom-left-radius: 0;
 }
 .navbar-collapse{
-  width: 500px;
+  width: 650px;
 }
 .navbar-form .form-control, .navbar-form .form-group, .navbar-form{
   width: 100%;
@@ -163,5 +163,13 @@
 @media (min-width: 768px) {
   .skin-custom.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
     border-left: 1px solid #d2d6de;
+  }
+}
+
+@media (max-width: 768px){
+  
+
+  .navbar-collapse{
+    width: 100%;
   }
 }
