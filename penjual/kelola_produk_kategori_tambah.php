@@ -9,7 +9,7 @@ if(!get_session('login')) {
     redirect(base_url());
 }
 
-define("menu_kelola_produk", true);
+define("menu_kelola_produk_kategori", true);
 define("SITE_TITLE", 'Tambah Produk');
 
 $form_error = [];
