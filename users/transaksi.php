@@ -108,12 +108,12 @@ $total_row = mysqli_num_rows(mysqli_query($con, $sql_transaksi));
                         <td class="text-center"><?php echo status_transaksi($row['status'], true);?></td>
                         <td class="text-center">
 
-                          <a href="<?php echo base_url('users/transaksi_detail.php?no_transaksi=' . $row['no_transaksi']);?>" class="btn btn-sm btn-success">Detail Transaksi</a>
+                          <a href="<?php echo base_url('users/transaksi_detail.php?no_transaksi=' . $row['no_transaksi']);?>" class="btn btn-sm btn-success"><i class="fa fa-pencil-square-o"></i> Detail Transaksi</a>
 
                         </td>
                         <td class="text-center">
                           <?php if($row['status'] == 'Menunggu Bukti Transfer') { ?>
-                          <a href="<?php echo base_url('users/pembayaran.php?no_transaksi=' . $row['no_transaksi']);?>" class="btn btn-sm btn-primary">Konfirmasi Pembayaran</a>
+                          <a href="<?php echo base_url('users/pembayaran.php?no_transaksi=' . $row['no_transaksi']);?>" class="btn btn-sm btn-primary"><i class="fa fa-credit-card"></i> Konfirmasi Pembayaran</a>
                           <?php } ?>
                         </td>
                       </tr>

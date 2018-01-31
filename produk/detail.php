@@ -25,11 +25,11 @@ require_once('../system/engine.php');
         <!-- Content Header (Page header) -->
 
         <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <section class="content-header"> 
           <h1>
               Produk <small>Produk kami</small>
               <a class="btn btn-sm btn-default pull-right" href="<?php echo base_url('produk');?>"><i class="fa fa-chevron-left"></i> Kembali</a>
-          </h1>
+          </h1> 
         </section>
 
         <!-- Main content -->
@@ -53,13 +53,13 @@ require_once('../system/engine.php');
                   <div class="col-md-6">
                     <p>
                       <h3><strong><?php echo $data['nama'] ?></strong></h3> 
-                      <small><i class="fa fa-tags"></i> <?php echo $data['nama_kategori']; ?></small>
+                      <small><i class="fa fa-tag"></i> <?php echo $data['nama_kategori']; ?></small>
                     </p>
                     <blockquote>
                       <small><?php echo $data['deskripsi'] ?></small>
                     </blockquote>
                     <br>
-                    <span class="btn-sm bg-gray" ><strong><i class="fa fa-tag"></i> <?php echo format_uang($data['harga']) ?></strong></span>
+                    <span class="btn-sm bg-red" ><strong><?php echo format_uang($data['harga']) ?></strong></span>
 
                   </div>
                 </div><!--row-->

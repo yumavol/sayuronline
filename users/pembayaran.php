@@ -6,7 +6,7 @@ if(!get_session('login')) {
     redirect(base_url('login.php'));
 }
 
-define('ON_KERANJANG', false);
+define('menu_transaksi', false);
 define("SITE_TITLE", 'Kirim Bukti Pembayaran');
 
 $no_transaksi = mysqli_real_escape_string($con, $_GET['no_transaksi']);
@@ -202,8 +202,10 @@ require_once('../layout/header.php');
                 </div>
                 <div class="form-group <?php echo (isset($bukti_transfer) && is_error($bukti_transfer['name'], 'required')) ? 'has-error': '';?>">
                   <label for="bukti-transfer">Bukti Transfer</label>
-                  <input type="file" name="bukti_transfer" class="form-control" id="bukti-transfer">
-                </div>
+                  <input type="file" name="bukti_transfer" id="bukti-transfer">
+
+                  <p class="help-block">Hanya diperbolehkan jpg, jpeg, gif, png, bmp</p>
+                </div> 
               </div>
               <div class="box-footer">
                 <button type="submit" class="btn btn-sm btn-primary pull-right"><i class="fa fa-send"></i> Kirim</button>

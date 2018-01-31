@@ -83,7 +83,7 @@ function tipe_user($tipe) {
                                       <input type="text" name="cari" class="form-control" placeholder="Search for..." value="<?php echo (!empty($_GET['cari'])) ? $_GET['cari'] : '';?>">
 
                                       <div class="input-group-btn ">
-                                        <select class="form-control" name="tipe_user">
+                                        <select class="form-control" name="tipe_user" style="width: 90px;">
                                             <option value="" <?php echo ($tipe_user == '') ? 'selected' : '';?>>Semua</option>
                                             <option value="admin" <?php echo ($tipe_user == 'admin') ? 'selected' : '';?>>Admin</option>
                                             <option value="penjual" <?php echo ($tipe_user == 'penjual') ? 'selected' : '';?>>Penjual</option>

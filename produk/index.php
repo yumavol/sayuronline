@@ -66,7 +66,8 @@
           <h1>
               Produk
               <?php if(isset($_GET['cari'])) { ?>
-              <small>Pencarian dengan kata kunci "<?php echo $_GET['cari']; ?>"</small>
+              <small>Pencarian dengan kata kunci "<?php echo $_GET['cari']; ?>"</small> 
+              <a class="btn btn-sm btn-default pull-right" href="<?php echo base_url('produk');?>"><i class="fa fa-chevron-left"></i> Kembali</a>
               <?php }else{ ?>
               <small>Produk kami</small>
               <?php } ?>
@@ -114,14 +115,15 @@
             <div class="col-md-3">
               <div class="box box-solid">
                 <div class="box-body no-padding">
-
-                  <div class="image"><img src="<?php echo base_url('uploads/foto/' .$res['foto']); ?>"></div>
+                  <a href="<?php echo base_url('produk/detail.php?slug=').$res['slug'] ?>">
+                    <div class="image"><img src="<?php echo base_url('uploads/foto/' .$res['foto']); ?>"></div>
+                  </a>
                 </div>
                 <div class="box-footer" style="padding-bottom: 0px">
-                  <p><label><?php echo $res['nama']; ?></span></label><br/>
-                  <label><small><i class="fa fa-tag"></i> <?php echo format_uang($res['harga']); ?></small></label><br/>
-                  <small><i class="fa fa-tags"></i> <?php echo $res['nama_kategori']; ?></small></p>
-                  <p><a href="<?php echo base_url('produk/detail.php?slug=').$res['slug'] ?>" class="btn btn-block btn-xs btn-green"><i class="fa fa-long-arrow-left"></i> Selengkapnya</a></p>
+                  <p><label><a href="<?php echo base_url('produk/detail.php?slug=').$res['slug'] ?>" class="text-black"><?php echo $res['nama']; ?></span></a></label><br/>
+                  <label class="text-danger"><small><?php echo format_uang($res['harga']); ?></small></label><br/>
+                  <small><i class="fa fa-tag"></i> <?php echo $res['nama_kategori']; ?></small></p>
+                  <p><a href="<?php echo base_url('produk/detail.php?slug=').$res['slug'] ?>" class="btn btn-block btn-xs btn-green"><i class="fa fa-search"></i> Selengkapnya</a></p>
                 </div>
               </div><!-- /.box -->
             </div>

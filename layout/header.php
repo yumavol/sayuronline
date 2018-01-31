@@ -100,6 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     background-size: auto 8px;
     background-position: -webkit-calc(100% - 44px) 13px;
     background-position: calc(100% - 44px) 13px;
+    cursor: pointer;
   }
 
   .pencarian .btn-default:hover, .pencarian .btn-default:active{
