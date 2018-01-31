@@ -11,6 +11,6 @@ $config['base_url'] = 'http://localhost/project/sayuronline/';
 $config['db_type'] = 'mysql';
 $config['db_host'] = 'localhost';
 $config['db_user'] = 'root';
-$config['db_pass'] = 'root';
+$config['db_pass'] = '';
 $config['db_name'] = 'sayuronline';
 

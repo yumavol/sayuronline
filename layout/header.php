@@ -56,6 +56,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
     margin-right: 1%;
   }
 
+  .pencarian .form-control:focus{
+    border-color: #ccc !important;
+  }
+  .pencarian .input-group{
+    width: 100%;
+  }
+
+  .category-group{ 
+    padding: 0px;
+    border: none;
+    overflow: hidden;
+  }
+  .category-group .form-control{
+    border-left: none; 
+  }  
+
+  .btn-cari{
+    width: 39px !important;
+  }
+
+  .select-kategori{
+    width: 100px !important;
+  }
 
   div.dataTables_wrapper div.dataTables_processing i{
     position: relative;
@@ -91,9 +114,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <form class="navbar-form navbar-left" role="search" action="<?php echo base_url('produk/index.php') ?>" method="get">
-            <div class="form-group has-feedback">
-              <input class="form-control input-sm" name="cari" value="<?php echo $value_cari ?>" placeholder="Cari produk .." type="text">
-              <span class="fa fa-search text-muted form-control-feedback"></span>
+            <div class="form-group pencarian">
+              <div class="input-group">
+                <input class="form-control" name="cari" valu e="<?php echo $value_cari ?>" placeholder="Cari produk .." type="text"> 
+                <div class="category-group input-group-addon select-kategori">
+                  <select class="form-control">
+                    <option>kategori ..</option> 
+                  </select>
+                </div>
+                <div class="category-group input-group-addon btn-cari">
+                  <button type="button" class="btn btn-default btn-flat"><i class="fa fa-search"></i></button>
+                </div>
+              </div>
             </div>
           </form>
         
