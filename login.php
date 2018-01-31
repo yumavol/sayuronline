@@ -73,7 +73,13 @@ if(!empty($_POST)) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/AdminLTE.min.css'); ?>">
-
+  <style type="text/css">
+    .logo-login{
+      position: relative;
+      top: 3px;
+      left: -5px;
+    }
+  </style>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -93,7 +99,7 @@ if(!empty($_POST)) {
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><img src="<?php echo base_url('assets/images/Logo.png');?>" width="250"> <small>LOGIN</small></a>
+    <a href="#"><img src="<?php echo base_url('assets/images/Logo.png');?>" width="250"> <small class="logo-login">LOGIN</small></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

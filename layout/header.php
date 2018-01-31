@@ -83,6 +83,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     width: 39px !important;
   }
 
+  .navbar-brand{
+    padding: 10px 15px;
+  }
+
   .select-kategori{
     position: relative;
     width: 100px !important; 
