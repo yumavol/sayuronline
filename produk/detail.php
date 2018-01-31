@@ -6,21 +6,21 @@ require_once('../system/engine.php');
     define("menu_produk", true);
 
     $data = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM produk WHERE slug='" . mysqli_real_escape_string($con, $_GET['slug']) . "'"));
-    
+
     require_once('../layout/header.php'); ?>
- 
+
     <style type="text/css">
       .image{
         width: 100%;
         overflow: hidden;
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
-        min-height: 183px;
+        max-height: 300px;
       }
       .image img{
         width: 100%;
       }
-       
+
     </style>
 
     <!-- Content Wrapper. Contains page content -->
@@ -39,18 +39,18 @@ require_once('../system/engine.php');
         <!-- Main content -->
         <form id="form-input" method="post" action="<?php echo base_url('users/keranjang.php'); ?>">
         <section class="content">
-            <div style="min-height: 500px" class="box box-primary">
+            <div style="min-height: 490px" class="box box-primary">
               <div class="box-header">
               <strong>Kategori Barang</strong>
               <button type="submit" value="1" name="submit" class="pull-right btn btn-sm btn-primary"><i class="fa fa-shopping-bag"></i> Tambah Ke keranjang</button>
-              </div>  
+              </div>
               <div class="box-body">
                 <div class="row">
-                  <div class="col-md-6 ">  
-                         
+                  <div class="col-md-4 ">
+
                     <div class="image">
                       <img src="<?php echo base_url('uploads/foto/' . $data['foto']); ?>">
-                    </div>  
+                    </div>
 
                   </div><!-- end col -->
 
@@ -61,11 +61,11 @@ require_once('../system/engine.php');
                     </blockquote>
                     <br>
                     <span class="btn-sm bg-gray" ><strong><?php echo format_uang($data['harga']) ?></strong></span>
-                      
+
                   </div>
                 </div><!--row-->
                 </div><!--box body-->
-            </div><!--box-->   
+            </div><!--box-->
         </section><!-- /.content -->
         <input type="hidden" name="id" value="<?php echo $data['no_produk'] ?>">
         </form>
@@ -76,6 +76,6 @@ require_once('../system/engine.php');
     <?php  require_once('../layout/footer.php'); ?>
 
     <script type="text/javascript">
-         
+
 
       </script>
