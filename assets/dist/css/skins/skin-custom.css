@@ -191,17 +191,18 @@
 }
 
 .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover{
-  background: #336c11;
+  background: #387911;
+  border-color: #336c11;
 }
 
 .nav-stacked > li.active > a, .nav-stacked > li.active > a:hover{
-  border-left-color: #336c11;
+  border-left-color: #387911;
 }
 
 .box.box-success{
-  border-top-color: #336c11;
+  border-top-color: #387911;
 }
 
 .form-control:focus{
-  border-color: #336c11; 
+  border-color: #387911; 
 }
