@@ -18,6 +18,7 @@
             <?php
             } else {
             ?>
+            <li role="presentation" <?php echo defined('menu_produk') ? 'class="active"' : '';?>><a href="<?php echo base_url('produk');?>"><i class="fa fa-archive"></i> Produk</a></li>
             <li role="presentation"><a href="<?php echo base_url('login.php');?>"><i class="fa fa-sign-in"></i> Login</a></li>
             <li role="presentation"><a href="<?php echo base_url('pendaftaran.php');?>"><i class="fa fa-users"></i> Daftar</a></li>
             <?php } ?>

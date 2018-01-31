@@ -10,10 +10,15 @@
   $total_row = 0;
   $limit_page = 8;
   $query_string = $_GET;
+  $no_kategori = (!empty($_GET['no_kategori'])) ? $_GET['no_kategori'] : '';
   if(!empty($_GET['cari'])) {
       $sql = "SELECT kategori_produk.nama as nama_kategori, produk.* FROM produk 
       JOIN kategori_produk ON kategori_produk.no_kategori=produk.no_kategori
-      WHERE nama LIKE '%" . mysqli_real_escape_string($con, $_GET['cari']) . "%'";
+      WHERE produk.nama LIKE '%" . mysqli_real_escape_string($con, $_GET['cari']) . "%'";
+
+      if($no_kategori != '') {
+        $sql .= " AND produk.no_kategori='" . mysqli_real_escape_string($con, $no_kategori) . "'";
+      }
 
       $total_row = mysqli_num_rows(mysqli_query($con, $sql));
   } else {
