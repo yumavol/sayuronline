@@ -2,7 +2,6 @@
 require_once('system/engine.php');
 
 $form_error = [];
-
 if(!empty($_POST)) {
   trim_validate($_POST);
 
@@ -46,7 +45,7 @@ if(!empty($_POST)) {
         } else if($data['tipe_user'] == 'penjual') {
           redirect(base_url('penjual'));
         } else {
-          redirect(base_url());
+          redirect(get_session('referer_from'));
         }
       } else {
         $form_error[] = 'Username/Password salah.';
