@@ -105,7 +105,7 @@ if(!empty($_POST)) {
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Silahkan Login Untuk Melanjutkan</p>
+    <p class="login-box-msg text-muted">Silahkan Login Untuk Melanjutkan</p>
     <?php
     // validasi
     if(!empty($form_error)) {

@@ -147,17 +147,17 @@ require_once('layout/header.php');
                             <div class="form-group <?php echo isset($form_error['password_lama']) ? 'has-error': '';?>">
                               <label for="password_lama">Password Lama</label>
                               <input type="password" id="password_lama" class="form-control" name="password_lama" placeholder="Password Lama">
-                              <small class="help-text">Kosongkan password jika tidak akan diubah</small>
+                              <small class="help-text text-muted">Kosongkan password jika tidak akan diubah</small>
                             </div>
                             <div class="form-group <?php echo (isset($form_error['password_baru']) || isset($form_error['konfirmasi_password_baru'])) ? 'has-error': '';?>">
                               <label for="password_baru">Password Baru</label>
                               <input type="password" id="password_baru" class="form-control" name="password_baru" placeholder="Password Baru">
-                              <small class="help-text">Kosongkan password jika tidak akan diubah</small>
+                              <small class="help-text text-muted">Kosongkan password jika tidak akan diubah</small>
                             </div>
                             <div class="form-group <?php echo (isset($form_error['password_baru']) || isset($form_error['konfirmasi_password_baru'])) ? 'has-error': '';?>">
                               <label for="konfirmasi_password_baru">Konfirmasi Password Baru</label>
                               <input type="password" id="konfirmasi_password_baru" class="form-control" name="konfirmasi_password_baru" placeholder="Konfirmasi Password Baru">
-                              <small class="help-text">Kosongkan password jika tidak akan diubah</small>
+                              <small class="help-text text-muted">Kosongkan password jika tidak akan diubah</small>
                             </div>
                           </div>
 

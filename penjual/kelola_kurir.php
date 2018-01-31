@@ -56,7 +56,7 @@ require_once('layout/header.php');
                                   <h3 class="box-title">Daftar Petugas Kurir</h3>
                                   <div class="box-tools pull-right">
                                     <form action="" method="get" class="form-horizontal">
-                                        <div class="input-group pull-right col-md-4">
+                                        <div class="input-group pull-right ">
                                           <input type="text" name="cari" class="form-control" placeholder="Search for..." value="">
                                           <span class="input-group-btn">
                                             <button class="btn btn-default" type="submit"><i class="fa fa-search"></i> Cari!</button>
@@ -66,7 +66,7 @@ require_once('layout/header.php');
                                   </div><!-- /.box-tools -->
                               </div><!-- /.box-header -->
                               <div class="box-body no-padding">
-                                  <table class="table table-hover">
+                                  <table class="table table-bordered">
                                       <tr>
                                           <th  class="text-center" width="65%">Nama </th>
                                           <th  class="text-center">No Hp</th>

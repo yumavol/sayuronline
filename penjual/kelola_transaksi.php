@@ -99,7 +99,7 @@ function status_transaksi($status) {
                                           <input type="text" name="cari" class="form-control" placeholder="Search for..." value="<?php echo (!empty($_GET['cari'])) ? $_GET['cari'] : '';?>">
 
                                           <div class="input-group-btn ">
-                                            <select class="form-control" name="status">
+                                            <select class="form-control" name="status" style="width: 90px;">
                                                 <option value="" <?php echo ($status == '') ? 'selected' : '';?>>Semua</option>
                                                 <option value="Menunggu Bukti Transfer" <?php echo ($status == 'Menunggu Bukti Transfer') ? 'selected' : '';?>>Menunggu Bukti Transfer</option>
                                                 <option value="Sedang Diproses" <?php echo ($status == 'Sedang Diproses') ? 'selected' : '';?>>Sedang Diproses</option>
