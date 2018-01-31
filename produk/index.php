@@ -11,12 +11,15 @@
   $limit_page = 8;
   $query_string = $_GET;
   if(!empty($_GET['cari'])) {
-      $sql = "SELECT * FROM produk
+      $sql = "SELECT kategori_produk.nama as nama_kategori, produk.* FROM produk 
+      JOIN kategori_produk ON kategori_produk.no_kategori=produk.no_kategori
       WHERE nama LIKE '%" . mysqli_real_escape_string($con, $_GET['cari']) . "%'";
 
       $total_row = mysqli_num_rows(mysqli_query($con, $sql));
   } else {
-      $sql = "SELECT * FROM produk ORDER BY nama";
+      $sql = "SELECT kategori_produk.nama as nama_kategori, produk.* FROM produk 
+      JOIN kategori_produk ON kategori_produk.no_kategori=produk.no_kategori
+      ORDER BY nama";
       $total_row = mysqli_num_rows(mysqli_query($con, $sql));
   }
 
@@ -98,8 +101,9 @@
                   <div class="image"><img src="<?php echo base_url('uploads/foto/' .$res['foto']); ?>"></div>
                 </div>
                 <div class="box-footer" style="padding-bottom: 0px">
-                  <p><label><?php echo format_uang($res['harga']); ?></span></label></p>
-                  <p><label><small><?php echo $res['nama']; ?></small></label></p>
+                  <p><label><?php echo $res['nama']; ?></span></label><br/>
+                  <label><small><i class="fa fa-tag"></i> <?php echo format_uang($res['harga']); ?></small></label><br/>
+                  <small><i class="fa fa-tags"></i> <?php echo $res['nama_kategori']; ?></small></p>
                   <p><a href="<?php echo base_url('produk/detail.php?slug=').$res['slug'] ?>" class="btn btn-block btn-xs btn-info"><i class="fa fa-long-arrow-left"></i> Selengkapnya</a></p>
                 </div>
               </div><!-- /.box -->

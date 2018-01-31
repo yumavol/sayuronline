@@ -5,7 +5,8 @@ require_once('../system/engine.php');
     define("SITE_TITLE", 'Produk list');
     define("menu_produk", true);
 
-    $data = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM produk WHERE slug='" . mysqli_real_escape_string($con, $_GET['slug']) . "'"));
+    $data = mysqli_fetch_array(mysqli_query($con, "SELECT kategori_produk.nama as nama_kategori, produk.* FROM produk 
+      JOIN kategori_produk ON kategori_produk.no_kategori=produk.no_kategori WHERE produk.slug='" . mysqli_real_escape_string($con, $_GET['slug']) . "'"));
 
     require_once('../layout/header.php'); ?>
 
@@ -34,9 +35,9 @@ require_once('../system/engine.php');
         <!-- Main content -->
         <form id="form-input" method="post" action="<?php echo base_url('users/keranjang.php'); ?>">
         <section class="content">
-            <div style="min-height: 490px" class="box box-primary">
+            <div style="min-height: 380px" class="box box-primary">
               <div class="box-header">
-              <strong>Kategori Barang</strong>
+              <h3 class="box-title"><?php echo $data['nama'] ?></h3>
               <button type="submit" value="1" name="submit" class="pull-right btn btn-sm btn-primary"><i class="fa fa-shopping-bag"></i> Tambah Ke keranjang</button>
               </div>
               <div class="box-body">
@@ -50,12 +51,15 @@ require_once('../system/engine.php');
                   </div><!-- end col -->
 
                   <div class="col-md-6">
-                    <p><h3><strong><?php echo $data['nama'] ?></strong></h3></p>
+                    <p>
+                      <h3><strong><?php echo $data['nama'] ?></strong></h3> 
+                      <small><i class="fa fa-tags"></i> <?php echo $data['nama_kategori']; ?></small>
+                    </p>
                     <blockquote>
                       <small><?php echo $data['deskripsi'] ?></small>
                     </blockquote>
                     <br>
-                    <span class="btn-sm bg-gray" ><strong><?php echo format_uang($data['harga']) ?></strong></span>
+                    <span class="btn-sm bg-gray" ><strong><i class="fa fa-tag"></i> <?php echo format_uang($data['harga']) ?></strong></span>
 
                   </div>
                 </div><!--row-->
