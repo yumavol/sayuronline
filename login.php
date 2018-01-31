@@ -99,7 +99,7 @@ if(!empty($_POST)) {
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><img src="<?php echo base_url('assets/images/Logo.png');?>" width="250"> <small class="logo-login">LOGIN</small></a>
+    <a href="<?php echo base_url() ?>"><img src="<?php echo base_url('assets/images/Logo.png');?>" width="250"> <small class="logo-login">LOGIN</small></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
