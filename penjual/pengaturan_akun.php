@@ -1,6 +1,7 @@
 <?php
 define("load_upload", true);
 require_once('../system/engine.php');
+require_once('../system/validasi.php');
 
 if(!get_session('login')) {
     redirect(base_url('login.php'));
@@ -12,50 +13,79 @@ if(!get_session('login')) {
 define("menu_pengaturan_akun", true);
 define("SITE_TITLE", 'Pengaturan Akun');
 $id_user=get_session('id_user');
-$form_error = [];
+$form_error = array();
 
 $data = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM user WHERE id_user='".mysqli_real_escape_string($con, $id_user)."'"));
 
 if(!empty($_POST)) {
   trim_validate($_POST);
 
+  $nama = $_POST["nama"];
+  $no_hp = $_POST["no_hp"];
+  $email = $_POST["email"]; 
+
   $password_baru = $_POST['password_baru'];
   $konfirmasi_password_baru = $_POST['konfirmasi_password_baru'];
   $password_lama = $_POST['password_lama'];
 
-  if(is_error($password_baru, 'required')) {
-    $form_error[] = 'Password baru wajib diisi.';
+  $data_update = array();
+  if(is_error($nama, 'required|min_length[3]')) {
+    $form_error['nama'] = 'Nama minimal 3 karakter.';
   }
-  if(is_error($password_lama, 'required')) {
-    $form_error[] = 'Password lama wajib diisi.';
+  if(is_error($no_hp, 'required')) {
+    $form_error['no_hp'] = 'No. Telp wajib diisi.';
   }
-  if(is_error($konfirmasi_password_baru, 'required')) {
-    $form_error[] = 'Konfrimasi password wajib diisi.';
+  if(is_error($email, 'required|min_length[5]')) {
+    $form_error['email'] = 'Email minimal 5 karakter.';
   }
 
-  if(empty($form_error) && (password_verify($password_lama, $data['password'])) && $password_baru==$konfirmasi_password_baru && strlen($password_baru)>=6) {
+  if(!is_error($nama, 'required|min_length[3]') && is_error($nama, 'callback_validasi_nama')) {
+    $form_error['nama'] = 'Nama tidak valid.';
+  }
 
-      $data_update = array(
-        'password' => encrypt_password($password_baru)
-      );
+  if(!is_error($no_hp, 'required') && is_error($no_hp, 'callback_validasi_no_hp')) {
+    $form_error['no_hp'] = 'No. Telp tidak valid.';
+  }
 
-      if(update_db($data_update, 'user', "id_user='" . mysqli_real_escape_string($con, $id_user) . "'")) {
-        set_flashdata('sukses', 'Password berhasil diubah.');
-        redirect(base_url('penjual/pengaturan_akun.php'));
-      } else {
-        set_flashdata('error', 'Password gagal diubah.');
-        redirect(base_url('penjual/pengaturan_akun.php'));
-      }
+  if($email != $data['email']) {
+    if(!is_error($email, 'required|min_length[5]') && is_error($email, 'callback_validasi_email')) {
+      $form_error['email'] = 'Email sudah digunakan.';
     }
-    elseif((password_verify($password_lama, $data['password'])) && $password_baru!=$konfirmasi_password_baru) {
-      $form_error[] = 'Konfirmasi password tidak sesuai.';
+  }
+
+  if(!empty($password_lama) || !empty($password_baru) || !empty($konfirmasi_password_baru)) {
+    if(is_error($password_baru, 'required|min_length[6]')) {
+      $form_error['password_baru'] = 'Password baru minimal 6 karakter.';
     }
-    elseif((password_verify($password_lama, $data['password'])) && $password_baru==$konfirmasi_password_baru && strlen($password_baru)<5) {
-      $form_error[] = 'Password minimal 6 karakter.';
+    if(is_error($password_lama, 'required|min_length[6]')) {
+      $form_error['password_lama'] = 'Password lama minimal 6 karakter.';
     }
-    else {
-      $form_error[] = 'Password lama tidak sesuai.';
+    if(is_error($konfirmasi_password_baru, 'required|min_length[6]')) {
+      $form_error['konfirmasi_password_baru'] = 'Konfrimasi password minimal 6 karakter.';
     }
+
+    if($password_baru != $konfirmasi_password_baru) {
+      $form_error['password_baru'] = 'Konfrimasi password tidak sama dengan password baru.';
+    }
+
+    if(!password_verify($password_lama, $data['password'])) {
+      $form_error['password_lama'] = 'Password lama salah.';
+    }
+
+    if(!isset($form_error['password_baru']) && !isset($form_error['password_lama']) && !isset($form_error['konfirmasi_password_baru'])) {
+      $data_update['password'] = encrypt_password($password_baru);
+    }
+  }
+
+  // jika tidak ada error
+  if(empty($form_error)) {
+    $data_update['nama'] = $nama;
+    $data_update['email'] = $email;
+    $data_update['no_hp'] = $no_hp;
+    update_db($data_update, 'user', "id_user='" . $id_user . "'");
+    set_flashdata('sukses', 'Berhasil memperbaharui akun.');
+    redirect(base_url('penjual/pengaturan_akun.php'));
+  }
 }
 
 require_once('layout/header.php');
@@ -88,7 +118,7 @@ require_once('layout/header.php');
             ?>
             <div class="row">
                 <div class="col-md-12">
-                  <form action="" method="POST" enctype="multipart/form-data">
+                  <form action="" method="POST">
                       <!-- Custom Tabs -->
                       <div class="box">
                         <div class="box-header">
@@ -98,19 +128,38 @@ require_once('layout/header.php');
                           </div>
                         </div>
                         <div class="box-body">
-                          <div class="form-group <?php echo (!empty($password) && is_error($password, 'required|min_length[6]|max_length[100]')) ? 'has-error': '' ;?>">
-                            <label for="password_lama">Password Lama</label>
-                            <input type="password" id="password_lama" class="form-control" name="password_lama" placeholder="Password Lama" value="<?php echo (!empty($_POST['password_lama'])) ? $_POST['password_lama'] :'';?>" required>
-                          </div>
-                          <div class="form-group <?php echo (!empty($password) && is_error($password, 'required|min_length[6]|max_length[100]')) ? 'has-error': '' ;?>">
-                            <label for="password_baru">Password Baru</label>
-                            <input type="password" id="password_baru" class="form-control" name="password_baru" placeholder="Password Baru" value="<?php echo (!empty($_POST['password_baru'])) ? $_POST['password_baru'] :'';?>" required>
-                          </div>
-                          <div class="form-group <?php echo (!empty($password) && is_error($password, 'required|min_length[6]|max_length[100]')) ? 'has-error': '' ;?>">
-                            <label for="konfirmasi_password_baru">Konfirmasi Password Baru</label>
-                            <input type="password" id="konfirmasi_password_baru" class="form-control" name="konfirmasi_password_baru" placeholder="Password Baru" value="<?php echo (!empty($_POST['konfirmasi_password_baru'])) ? $_POST['konfirmasi_password_baru'] :'';?>" required>
+                          <div class="col-md-6">
+                            <div class="form-group <?php echo isset($form_error['nama']) ? 'has-error': '';?>">
+                              <label for="nama">Nama</label>
+                              <input type="text" id="nama" class="form-control" name="nama" placeholder="Nama" value="<?php echo (!empty($_POST['nama'])) ? $_POST['nama'] : $data['nama'];?>" max-length="50" required>
+                            </div>
+                            <div class="form-group <?php echo isset($form_error['email']) ? 'has-error': '';?>">
+                              <label for="email">Email</label>
+                              <input type="email" id="email" class="form-control" name="email" placeholder="Email" value="<?php echo (!empty($_POST['email'])) ? $_POST['email'] : $data['email'];?>" max-length="40" required>
+                            </div>
+                            <div class="form-group <?php echo isset($form_error['no_hp']) ? 'has-error': '';?>">
+                              <label for="no_hp">No. HP</label>
+                              <input type="text" id="no_hp" class="form-control" name="no_hp" placeholder="No. HP" value="<?php echo (!empty($_POST['no_hp'])) ? $_POST['no_hp'] : $data['no_hp'];?>" max-length="15" required>
+                            </div>
                           </div>
 
+                          <div class="col-md-6">
+                            <div class="form-group <?php echo isset($form_error['password_lama']) ? 'has-error': '';?>">
+                              <label for="password_lama">Password Lama</label>
+                              <input type="password" id="password_lama" class="form-control" name="password_lama" placeholder="Password Lama">
+                              <small class="help-text">Kosongkan password jika tidak akan diubah</small>
+                            </div>
+                            <div class="form-group <?php echo (isset($form_error['password_baru']) || isset($form_error['konfirmasi_password_baru'])) ? 'has-error': '';?>">
+                              <label for="password_baru">Password Baru</label>
+                              <input type="password" id="password_baru" class="form-control" name="password_baru" placeholder="Password Baru">
+                              <small class="help-text">Kosongkan password jika tidak akan diubah</small>
+                            </div>
+                            <div class="form-group <?php echo (isset($form_error['password_baru']) || isset($form_error['konfirmasi_password_baru'])) ? 'has-error': '';?>">
+                              <label for="konfirmasi_password_baru">Konfirmasi Password Baru</label>
+                              <input type="password" id="konfirmasi_password_baru" class="form-control" name="konfirmasi_password_baru" placeholder="Konfirmasi Password Baru">
+                              <small class="help-text">Kosongkan password jika tidak akan diubah</small>
+                            </div>
+                          </div>
 
                         </div><!-- /.box body -->
                       </form>

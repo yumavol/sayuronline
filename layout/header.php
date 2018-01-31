@@ -1,7 +1,10 @@
 <?php
-ob_start(); 
-require_once('../system/keranjang.php');
-
+ob_start();
+if(!defined('on_pendaftaran')) {
+  require_once('../system/keranjang.php');
+} else {
+  require_once('system/keranjang.php');
+}
 $value_cari = (isset($_GET['cari'])) ? $_GET['cari'] : '';
 
 if(get_session('id_user')) {
