@@ -89,8 +89,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   .select-kategori{
     position: relative;
-    width: 100px !important; 
+    width: 140px !important; 
+    overflow: hidden;
   }
+  .select-kategori select{
+    width: 120% !important;
+    padding-right: 40px;  
+    background-image: url(../assets/images/dropdown.png);
+    background-repeat: no-repeat;
+    background-size: auto 8px;
+    background-position: -webkit-calc(100% - 44px) 13px;
+    background-position: calc(100% - 44px) 13px;
+  }
+
   .select-kategori:before{
     content: " ";
     height: 25px;

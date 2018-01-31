@@ -127,11 +127,11 @@ if(!empty($_POST)) {
                 <?php require_once('../layout/sidebar.php'); ?>
                   <div class="col-md-9">
                         <!-- Custom Tabs -->
-                        <div class="box">
+                        <div class="box box-success">
                           <div class="box-header">
-                            <h3 class="box-title">Pengaturan Akun</h3>
+                            <Strong>Pengaturan Akun</strong>
                             <div class="bot-tools pull-right">
-                              <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Simpan</button>
+                              <button type="submit" class="btn btn-sm btn-green"><i class="fa fa-save"></i> Simpan</button>
                             </div>
                           </div>
                           <div class="box-body">

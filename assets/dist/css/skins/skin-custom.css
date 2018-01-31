@@ -197,3 +197,11 @@
 .nav-stacked > li.active > a, .nav-stacked > li.active > a:hover{
   border-left-color: #336c11;
 }
+
+.box.box-success{
+  border-top-color: #336c11;
+}
+
+.form-control:focus{
+  border-color: #336c11; 
+}
