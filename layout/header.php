@@ -82,7 +82,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   .select-kategori{
     position: relative;
-    width: 100px !important;
+    width: 100px !important; 
   }
   .select-kategori:before{
     content: " ";
