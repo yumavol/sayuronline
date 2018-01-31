@@ -76,8 +76,9 @@ if(!empty($_POST)) {
   <style type="text/css">
     .logo-login{
       position: relative;
-      top: 3px;
-      left: -5px;
+      top: -0px;
+      left: -3px;
+      font-size: 22px;
     }
   </style>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -99,7 +100,7 @@ if(!empty($_POST)) {
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="<?php echo base_url() ?>"><img src="<?php echo base_url('assets/images/Logo.png');?>" width="250"> <small class="logo-login">LOGIN</small></a>
+    <a href="<?php echo base_url() ?>"><img src="<?php echo base_url('assets/images/Logo.png');?>" width="250"> <small class="logo-login">login</small></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
