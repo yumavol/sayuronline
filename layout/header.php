@@ -121,8 +121,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <div class="input-group">
                 <input class="form-control" name="cari" valu e="<?php echo $value_cari ?>" placeholder="Cari produk .." type="text"> 
                 <div class="category-group input-group-addon select-kategori">
-                  <select class="form-control">
-                    <option>kategori ..</option> 
+                  <select class="form-control" name="no_kategori">
+                    <option value="">Semua Kategori</option> 
                   </select>
                 </div>
                 <div class="category-group input-group-addon btn-cari">
