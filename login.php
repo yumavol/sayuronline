@@ -46,7 +46,11 @@ if(!empty($_POST)) {
         } else if($data['tipe_user'] == 'penjual') {
           redirect(base_url('penjual'));
         } else {
-          redirect(get_session('referer_from'));
+          if(!preg_match('/pendaftaran/', get_session('referer_from'))) {
+            redirect(get_session('referer_from'));
+          } else {
+            redirect(base_url());
+          }
         }
       } else {
         $form_error[] = 'Username/Password salah.';

@@ -14,6 +14,12 @@ if(!get_session('login')) {
 $id_alamat = 0;
 $id_user = get_session('id_user');
 
+
+if(empty($_POST['id_alamat']) && empty($_POST['alamat_baru'])) {
+    set_flashdata('error', 'Alamat belum diisi.');
+    redirect(base_url('users/isi_alamat.php'));
+}
+
 if(empty(trim($_POST['id_alamat']))) {
     // insert alamat baru
     $alamat_baru = $_POST['alamat_baru'];
