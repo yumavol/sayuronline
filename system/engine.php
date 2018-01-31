@@ -150,7 +150,9 @@ function url_title($str, $separator = '-', $lowercase = FALSE) {
 }
 
 if(isset($_SERVER['HTTP_REFERER'])){
-	$_SESSION['referer_from'] = $_SERVER['HTTP_REFERER'];
+	if(!preg_match('/login/', $_SERVER['HTTP_REFERER'])) {
+		$_SESSION['referer_from'] = $_SERVER['HTTP_REFERER'];
+	}
 }
 
 if(defined('load_upload')){
