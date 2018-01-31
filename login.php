@@ -127,7 +127,7 @@ if(!empty($_POST)) {
         <button type="submit" class="btn btn-danger btn-block btn-flat">Sign In</button>
       </div>
         <!-- /.col -->
-      <a href="<?php echo base_url() ?>" class="btn btn-default btn-xs btn-block btn-flat"><i class="fa fa-home"></i> kembali ke awal</a>
+      <!-- <a href="<?php echo base_url() ?>" class="btn btn-default btn-xs btn-block btn-flat"><i class="fa fa-home"></i> kembali ke awal</a> -->
       </div>
     </form>
 
