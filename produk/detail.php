@@ -11,16 +11,11 @@ require_once('../system/engine.php');
 
     <style type="text/css">
       .image{
-        width: 100%;
         overflow: hidden;
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
         max-height: 300px;
       }
-      .image img{
-        width: 100%;
-      }
-
     </style>
 
     <!-- Content Wrapper. Contains page content -->
