@@ -72,12 +72,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
     border-left: none; 
   }  
 
+  .form-cari{
+    border-right: none;
+  }
+
   .btn-cari{
     width: 39px !important;
   }
 
   .select-kategori{
+    position: relative;
     width: 100px !important;
+  }
+  .select-kategori:before{
+    content: " ";
+    height: 25px;
+    width: 2px; 
+    border-left: 1px solid #bbb;
+    display: block;
+    z-index: 9;
+    position: absolute;
+    left: 0px;
+    top: 5px;
   }
 
   div.dataTables_wrapper div.dataTables_processing i{
@@ -116,7 +132,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <form class="navbar-form navbar-left" role="search" action="<?php echo base_url('produk/index.php') ?>" method="get">
             <div class="form-group pencarian">
               <div class="input-group">
-                <input class="form-control" name="cari" valu e="<?php echo $value_cari ?>" placeholder="Cari produk .." type="text"> 
+                <input class="form-control form-cari" name="cari" valu e="<?php echo $value_cari ?>" placeholder="Cari produk .." type="text"> 
                 <div class="category-group input-group-addon select-kategori">
                   <select class="form-control">
                     <option>kategori ..</option> 
