@@ -16,4 +16,4 @@ Apliasi ini dibuat untuk memenuhi tugas besar matakuliah RPL
 www.facebook.com/yumavol
 
 ### Lisensi By kumaha aing ###
-https://bitbucket.org/yumavol/sayuronline/src/bd04cfdcff19fa10cd302d6fd876b59048f7bed5/License.md?at=master&fileviewer=file-view-default
+[LICENSE.md](https://bitbucket.org/yumavol/sayuronline/src/bd04cfdcff19fa10cd302d6fd876b59048f7bed5/License.md?at=master&fileviewer=file-view-default)
