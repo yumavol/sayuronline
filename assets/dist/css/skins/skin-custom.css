@@ -167,9 +167,33 @@
 }
 
 @media (max-width: 768px){
-  
+
 
   .navbar-collapse{
     width: 100%;
   }
+}
+
+.btn-green:hover, .btn-green:active, .btn-green.hover{
+  background: #295d0a;
+}
+
+.btn-green:hover{
+  color: #fff;
+  background-color: #336c11;;
+  border-color: #336c11;;
+}
+
+.btn-green{
+  color: #fff;
+  background-color: #387911;
+  border-color: #336c11;;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover{
+  background: #336c11;
+}
+
+.nav-stacked > li.active > a, .nav-stacked > li.active > a:hover{
+  border-left-color: #336c11;
 }

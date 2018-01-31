@@ -71,6 +71,7 @@ if(!empty($_POST)) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/skins/skin-custom.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/AdminLTE.min.css'); ?>">
   <style type="text/css">
@@ -125,7 +126,7 @@ if(!empty($_POST)) {
       </div>
       <br>
       <div class="form-group">
-        <button type="submit" class="btn btn-danger btn-block btn-flat">Sign In</button>
+        <button type="submit" class="btn btn-green btn-block btn-flat">Sign In</button>
       </div>
         <!-- /.col -->
       <!-- <a href="<?php echo base_url() ?>" class="btn btn-default btn-xs btn-block btn-flat"><i class="fa fa-home"></i> kembali ke awal</a> -->

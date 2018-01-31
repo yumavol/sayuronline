@@ -109,7 +109,7 @@
                   <p><label><?php echo $res['nama']; ?></span></label><br/>
                   <label><small><i class="fa fa-tag"></i> <?php echo format_uang($res['harga']); ?></small></label><br/>
                   <small><i class="fa fa-tags"></i> <?php echo $res['nama_kategori']; ?></small></p>
-                  <p><a href="<?php echo base_url('produk/detail.php?slug=').$res['slug'] ?>" class="btn btn-block btn-xs btn-info"><i class="fa fa-long-arrow-left"></i> Selengkapnya</a></p>
+                  <p><a href="<?php echo base_url('produk/detail.php?slug=').$res['slug'] ?>" class="btn btn-block btn-xs btn-green"><i class="fa fa-long-arrow-left"></i> Selengkapnya</a></p>
                 </div>
               </div><!-- /.box -->
             </div>
