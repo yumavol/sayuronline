@@ -121,52 +121,52 @@ require_once('layout/header.php');
         <!-- Main content -->
         <section class="content">
           <div class="row">
-             <div class="col-md-7 col-md-offset-3">
+             <div class="col-md-7 col-md-offset-2">
              <form class="form-horizontal" action='' method="POST">
                 <div class="form-group <?php echo isset($form_error['nama']) ? 'has-error': '';?>">
-                   <label class="col-sm-2 control-label">Nama</label> 
+                   <label class="col-sm-3 control-label">Nama</label> 
                    <div class="col-sm-8">
                       <input class="form-control" id="nama" name="nama" placeholder="nama" type="text" value="<?php echo !empty($_POST['nama']) ? $_POST['nama'] : '';?>" max-length="50">
                    </div>
                 </div> 
 
                 <div class="form-group <?php echo isset($form_error['no_hp']) ? 'has-error': '';?>">
-                   <label class="col-sm-2 control-label">No Telp</label> 
+                   <label class="col-sm-3 control-label">No Telp</label> 
                    <div class="col-sm-8">
                       <input class="form-control" id="no_hp" name="no_hp" placeholder="No telepon" type="text" value="<?php echo !empty($_POST['no_hp']) ? $_POST['no_hp'] : '';?>" max-length="15">
                    </div>
                 </div> 
 
                 <div class="form-group <?php echo isset($form_error['email']) ? 'has-error': '';?>">
-                   <label class="col-sm-2 control-label">Email</label> 
+                   <label class="col-sm-3 control-label">Email</label> 
                    <div class="col-sm-8">
                       <input class="form-control" id="email" name="email" placeholder="Email" type="email" value="<?php echo !empty($_POST['email']) ? $_POST['email'] : '';?>" max-length="40">
                    </div>
                 </div> 
 
                 <div class="form-group <?php echo isset($form_error['username']) ? 'has-error': '';?>">
-                   <label class="col-sm-2 control-label">Username</label> 
+                   <label class="col-sm-3 control-label">Username</label> 
                    <div class="col-sm-8">
                       <input class="form-control" id="username" name="username" placeholder="username" type="text" value="<?php echo !empty($_POST['username']) ? $_POST['username'] : '';?>" max-length="25">
                    </div>
                 </div>
 
                 <div class="form-group <?php echo (isset($form_error['password']) || isset($form_error['password2'])) ? 'has-error': '';?>">
-                   <label class="col-sm-2 control-label">Password</label> 
+                   <label class="col-sm-3 control-label">Password</label> 
                    <div class="col-sm-8">
                       <input class="form-control" id="password" name="password" placeholder="Password" type="password">
                    </div>
                 </div>
 
                 <div class="form-group <?php echo (isset($form_error['password']) || isset($form_error['password2'])) ? 'has-error': '';?>">
-                   <label class="col-sm-2 control-label">Konfirmasi Password</label> 
+                   <label class="col-sm-3 control-label">Konfirmasi Password</label> 
                    <div class="col-sm-8">
                       <input class="form-control" id="password2" name="password2" placeholder="Konfirmasi Password" type="password">
                    </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-8 col-md-offset-2">
-                    <button type="submit" name="submit" class="btn btn-primary btn-flat btn-block"><i class="fa fa-plus"></i> Daftar</button>
+                  <div class="col-sm-8 col-md-offset-3">
+                    <button type="submit" name="submit" class="btn btn-green btn-flat btn-block"><i class="fa fa-plus"></i> Daftar</button>
                   </div>
                 </div>
                 </form>

@@ -1,9 +1,6 @@
   <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- To the right -->
-    <div class="pull-right hidden-xs">
-
-    </div>
+  <footer class="main-footer text-center">
+     
     <!-- Default to the left -->
     <strong>Copyright &copy; 2018 RPL 1 - 8 UNIKOM.</strong>
   </footer>
@@ -21,7 +18,13 @@
 
 <script src="<?php echo base_url() ?>assets/dist/js/app.min.js"></script>
 
-
+<script type="text/javascript">
+if($(".alert").length){
+	setInterval(function(){
+	    $(".alert").slideUp(200);
+	}, 4000);
+}
+</script>
 <?php if(isset($js)) {foreach($js as $j) { ?>
   <script src="<?php echo base_url($j);?>" type="text/javascript"></script>
 <?php }} ?>

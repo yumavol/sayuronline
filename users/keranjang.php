@@ -1,8 +1,7 @@
 <?php
     require_once('../system/engine.php');
     require_once('../system/keranjang.php');
-
-    define('ON_KERANJANG', true);
+ 
     define("SITE_TITLE", 'Produk list');
     define("menu_keranjang", true);
 

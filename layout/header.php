@@ -95,11 +95,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
   .select-kategori select{
     width: 120% !important;
     padding-right: 40px;  
-    background-image: url(../assets/images/dropdown.png);
+    background-image: url(<?php echo base_url(); ?>/assets/images/dropdown.png);
     background-repeat: no-repeat;
     background-size: auto 8px;
     background-position: -webkit-calc(100% - 44px) 13px;
     background-position: calc(100% - 44px) 13px;
+  }
+
+  .pencarian .btn-default:hover, .pencarian .btn-default:active{
+    border-color:#bbb;
+    background: #bbb;
   }
 
   .select-kategori:before{
@@ -116,8 +121,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   div.dataTables_wrapper div.dataTables_processing i{
     position: relative;
-    top: 50%;
-
+    top: 50%; 
   }
 </style>
 
@@ -177,7 +181,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
             <!-- Tasks Menu -->
-            <li class="dropdown tasks-menu">
+            <li class="dropdown tasks-menu <?php echo (defined('menu_keranjang')) ? 'active' : '' ; ?>">
               <!-- Menu Toggle Button -->
               <a href="<?php echo base_url('users/keranjang.php'); ?>" >
                 <i class="glyphicon glyphicon-shopping-cart"></i>

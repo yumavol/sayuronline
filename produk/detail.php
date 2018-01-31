@@ -35,10 +35,10 @@ require_once('../system/engine.php');
         <!-- Main content -->
         <form id="form-input" method="post" action="<?php echo base_url('users/keranjang.php'); ?>">
         <section class="content">
-            <div style="min-height: 380px" class="box box-primary">
+            <div style="min-height: 380px" class="box box-success">
               <div class="box-header">
               <h3 class="box-title"><?php echo $data['nama'] ?></h3>
-              <button type="submit" value="1" name="submit" class="pull-right btn btn-sm btn-primary"><i class="fa fa-shopping-bag"></i> Tambah Ke keranjang</button>
+              <button type="submit" value="1" name="submit" class="pull-right btn btn-sm btn-green"><i class="fa fa-shopping-bag"></i> Tambah Ke keranjang</button>
               </div>
               <div class="box-body">
                 <div class="row">

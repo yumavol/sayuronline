@@ -110,22 +110,23 @@ if(!empty($_POST)) {
 
         <!-- Main content -->
           <section class="content">
-            <?php
-            // validasi
-            if(!empty($form_error)) {
-              echo alert_error(implode($form_error, '<br/>'));
-            }
-            if(has_flashdata('sukses')) {
-              echo alert_sukses(get_flashdata('sukses'));
-            }
-            if(has_flashdata('error')) {
-              echo alert_error(get_flashdata('error'));
-            }
-            ?>
             <form action="" method="POST" >
               <div class="row">
                 <?php require_once('../layout/sidebar.php'); ?>
                   <div class="col-md-9">
+                      
+                      <?php
+                      // validasi
+                      if(!empty($form_error)) {
+                        echo alert_error(implode($form_error, '<br/>'));
+                      }
+                      if(has_flashdata('sukses')) {
+                        echo alert_sukses(get_flashdata('sukses'));
+                      }
+                      if(has_flashdata('error')) {
+                        echo alert_error(get_flashdata('error'));
+                      }
+                      ?>
                         <!-- Custom Tabs -->
                         <div class="box box-success">
                           <div class="box-header">

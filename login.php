@@ -40,6 +40,7 @@ if(!empty($_POST)) {
           'login' => true
         );
         set_session($data_login);
+        set_flashdata('sukses', 'Anda berhasil login.');
         if($data['tipe_user'] == 'admin') {
           redirect(base_url('admin'));
         } else if($data['tipe_user'] == 'penjual') {
@@ -108,10 +109,10 @@ if(!empty($_POST)) {
     <?php
     // validasi
     if(!empty($form_error)) {
-      echo alert_error(implode($form_error, '<br/>'));
+      echo alert_error_login(implode($form_error, '<br/>'));
     }
     if(has_flashdata('sukses')) {
-      echo alert_sukses(get_flashdata('sukses'));
+      echo alert_sukses_login(get_flashdata('sukses'));
     }
     ?>
     <form action="" method="post">

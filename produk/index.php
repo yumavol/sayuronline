@@ -1,8 +1,7 @@
 <?php
   define("load_pagination", true);
   require_once('../system/engine.php');
-
-  define('ON_KERANJANG', true);
+ 
   define("SITE_TITLE", 'Produk list');
   define("menu_produk", true);
 
@@ -77,15 +76,28 @@
         <!-- Main content -->
         <section class="content">
         <div class="row">
-
+ 
           <?php
-          if(has_flashdata('error')) {
-            echo alert_error(get_flashdata('error'));
-          }
           require_once('../layout/sidebar.php');
           ?>
 
           <div class="col-md-9">
+          <?php 
+
+          if(has_flashdata('sukses')){
+              echo alert_sukses(get_flashdata('sukses'));
+          }
+          if(has_flashdata('error')){
+              echo alert_error(get_flashdata('error'));
+          }
+          if(has_flashdata('warning')){
+              echo alert_warning(get_flashdata('warning'));
+          }
+          if(has_flashdata('info')){
+              echo alert_info(get_flashdata('info'));
+          } 
+           ?>
+
           <?php $i = 1;
 
                while($res = mysqli_fetch_array($data_produk)) {
