@@ -93,7 +93,7 @@ if(!empty($_POST)) {
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="#">SayurOnline <b>LOGIN</b></a>
+    <a href="#"><img src="<?php echo base_url('assets/images/Logo.png');?>" width="250"> <small>LOGIN</small></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
