@@ -8,7 +8,7 @@
 
   $current_page = (!empty($_GET['page'])) ? $_GET['page'] : 1;
   $total_row = 0;
-  $limit_page = 12;
+  $limit_page = 8;
   $query_string = $_GET;
   if(!empty($_GET['cari'])) {
       $sql = "SELECT * FROM produk
@@ -16,15 +16,15 @@
 
       $total_row = mysqli_num_rows(mysqli_query($con, $sql));
   } else {
-      $sql = "SELECT * FROM produk";
+      $sql = "SELECT * FROM produk ORDER BY nama";
       $total_row = mysqli_num_rows(mysqli_query($con, $sql));
-  } 
-   
-  $sql .= " LIMIT " . (($current_page - 1) * $limit_page) . ", $limit_page";  
+  }
+
+  $sql .= " LIMIT " . (($current_page - 1) * $limit_page) . ", $limit_page";
   $data_produk = mysqli_query($con, $sql);
 
-  
-  
+
+
 
     require_once('../layout/header.php'); ?>
 
@@ -42,7 +42,7 @@
         width: 100%;
       }
       .a-disabled{
-        color: #555;  
+        color: #555;
       }
       .a-disabled:hover{
         color: #555;
@@ -57,7 +57,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-              Produk 
+              Produk
               <?php if(isset($_GET['cari'])) { ?>
               <small>Pencarian dengan kata kunci "<?php echo $_GET['cari']; ?>"</small>
               <?php }else{ ?>
@@ -69,27 +69,27 @@
         <!-- Main content -->
         <section class="content">
         <div class="row">
-          
+
           <?php
           if(has_flashdata('error')) {
             echo alert_error(get_flashdata('error'));
           }
           require_once('../layout/sidebar.php');
           ?>
-          
-          <div class="col-md-9">
-          <?php $i = 1; 
 
-               while($res = mysqli_fetch_array($data_produk)) { 
+          <div class="col-md-9">
+          <?php $i = 1;
+
+               while($res = mysqli_fetch_array($data_produk)) {
                if(($i == 1)){ ?>
             <div class="row"><!-- row product -->
-          <?php } //end if 
+          <?php } //end if
                if(($i % 5 == 0)){ ?>
 
             </div><!-- ./row product -->
 
             <div class="row"><!-- row product -->
-         <?php  } //end if ?> 
+         <?php  } //end if ?>
 
             <div class="col-md-3">
               <div class="box box-solid">
@@ -102,17 +102,17 @@
                   <p><label><small><?php echo $res['nama']; ?></small></label></p>
                   <p><a href="<?php echo base_url('produk/detail.php?slug=').$res['slug'] ?>" class="btn btn-block btn-xs btn-info"><i class="fa fa-long-arrow-left"></i> Selengkapnya</a></p>
                 </div>
-              </div><!-- /.box --> 
+              </div><!-- /.box -->
             </div>
 
             <?php $i++; ?>
-            <?php } ?>            
-            </div><!-- /.row --> 
+            <?php } ?>
+            </div><!-- /.row -->
 
               <?php
               echo pagination(base_url('produk/index.php'), $total_row, $limit_page, $current_page, $query_string);
               ?>
-            
+
 
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -126,6 +126,6 @@
 
     <?php  require_once('../layout/footer.php'); ?>
     <script type="text/javascript">
-      
+
 
     </script>
