@@ -2,10 +2,10 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
+
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2017 <a href="#"> </a>.</strong> 
-  </footer>
+    <strong>Copyright &copy; 2018 RPL 1 - 8 UNIKOM.</strong>
 </div>
 <!-- ./wrapper -->
 
@@ -24,11 +24,5 @@
 <?php if(isset($js)) {foreach($js as $j) { ?>
 <script src="<?php echo base_url($j);?>" type="text/javascript"></script>
 <?php }} ?>
-
-<script type="text/javascript">
-	
- 
-
-</script>
 </body>
 </html>

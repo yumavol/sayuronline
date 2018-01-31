@@ -103,6 +103,9 @@ if(!empty($_POST)) {
     if(!empty($form_error)) {
       echo alert_error(implode($form_error, '<br/>'));
     }
+    if(has_flashdata('sukses')) {
+      echo alert_sukses(get_flashdata('sukses'));
+    }
     ?>
     <form action="" method="post">
       <div class="form-group has-feedback">

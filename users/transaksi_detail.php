@@ -4,7 +4,11 @@ require_once('../system/engine.php');
 
 if(!get_session('login')) {
     redirect(base_url('login.php'));
+} else if(get_session('tipe_user') != 'pembeli') {
+    set_flashdata('error', 'Anda tidak mempunyai hak untuk membuka halaman tersebut.');
+    redirect(base_url());
 }
+
 $no_transaksi = mysqli_real_escape_string($con, $_GET['no_transaksi']);
 define('ON_KERANJANG', false);
 define("SITE_TITLE", 'Transaksi | '.$no_transaksi);

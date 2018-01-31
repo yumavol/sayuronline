@@ -1,7 +1,10 @@
 <?php
-ob_start(); 
-require_once('../system/keranjang.php');
-
+ob_start();
+if(!defined('on_pendaftaran')) {
+  require_once('../system/keranjang.php');
+} else {
+  require_once('system/keranjang.php');
+}
 $value_cari = (isset($_GET['cari'])) ? $_GET['cari'] : '';
 
 if(get_session('id_user')) {
@@ -132,14 +135,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <form class="navbar-form navbar-left" role="search" action="<?php echo base_url('produk/index.php') ?>" method="get">
             <div class="form-group pencarian">
               <div class="input-group">
-                <input class="form-control form-cari" name="cari" valu e="<?php echo $value_cari ?>" placeholder="Cari produk .." type="text"> 
+                <input class="form-control form-cari" name="cari" valu e="<?php echo $value_cari ?>" placeholder="Cari produk .." type="text" value="<?php echo (!empty($_GET['cari'])) ? htmlentities($_GET['cari']) : '';?>"> 
                 <div class="category-group input-group-addon select-kategori">
-                  <select class="form-control">
-                    <option>kategori ..</option> 
+                  <select class="form-control" name="no_kategori">
+                    <option value="">Semua Kategori</option> 
+                    <?php
+                    $query_kategori = mysqli_query($con, "SELECT * FROM kategori_produk ORDER BY nama ASC");
+                    while($row = mysqli_fetch_array($query_kategori)) {
+                    ?>
+                    <option value="<?php echo $row['no_kategori'];?>" <?php echo (!empty($_GET['no_kategori']) && ($_GET['no_kategori'] == $row['no_kategori'])) ? 'selected' : '';?>><?php echo $row['nama'];?></option> 
+                    <?php
+                    }
+                    ?>
                   </select>
                 </div>
                 <div class="category-group input-group-addon btn-cari">
-                  <button type="button" class="btn btn-default btn-flat"><i class="fa fa-search"></i></button>
+                  <button type="submit" class="btn btn-default btn-flat"><i class="fa fa-search"></i></button>
                 </div>
               </div>
             </div>
