@@ -1,6 +1,7 @@
 <?php
 define("load_upload", true);
 require_once('../system/engine.php');
+require_once('../system/validasi.php');
 
 if(!get_session('login')) {
     redirect(base_url('login.php'));
@@ -21,17 +22,19 @@ if(!empty($_POST)) {
   $no_hp = $_POST['no_hp'];
 
   // validasi
-  if(is_error($nama, 'required')) {
-    $form_error[] = 'Nama wajib diisi.';
-  }
-  if(is_error($no_hp, 'required')) {
-    $form_error[] = 'No HP wajib diisi.';
-  }
   if(is_error($nama, 'min_length[3]|max_length[50]')) {
-    $form_error[] = 'Nama minimal 3 karakter dan maksimal 50 karakter.';
+    $form_error['nama'] = 'Nama minimal 3 karakter dan maksimal 50 karakter.';
   }
   if(is_error($no_hp, 'min_length[10]|max_length[12]')) {
-    $form_error[] = 'No HP minimal 10 digit dan maksimal 12 digit.';
+    $form_error['no_hp'] = 'No HP minimal 10 digit dan maksimal 12 digit.';
+  }
+
+  if(!is_error($nama, 'required|min_length[3]|max_length[50]') && is_error($nama, 'callback_validasi_nama')) {
+    $form_error['nama'] = 'Nama tidak valid.';
+  }
+
+  if(!is_error($no_hp, 'min_length[10]|max_length[12]') && is_error($no_hp, 'callback_validasi_no_hp')) {
+    $form_error['no_hp'] = 'No. Telp tidak valid.';
   }
 
 
@@ -90,11 +93,11 @@ require_once('layout/header.php');
                             </div>
                           </div>
                           <div class="box-body">
-                              <div class="form-group <?php echo (!empty($nama) && is_error($nama, 'required|min_length[3]|max_length[50]')) ? 'has-error': '' ;?>">
+                              <div class="form-group <?php echo (isset($form_error['nama'])) ? 'has-error': '' ;?>">
                                 <label for="nama_produk">Nama</label>
                                 <input type="text" id="nama_produk" class="form-control" name="nama" placeholder="Nama ..." value="<?php echo (!empty($_POST['nama'])) ? $_POST['nama'] : '';?>" required>
                               </div>
-                              <div class="form-group <?php echo (!empty($no_hp) && is_error($no_hp, 'required|min_length[10]|max_length[12]')) ? 'has-error': '' ;?>">
+                              <div class="form-group <?php echo (isset($form_error['no_hp'])) ? 'has-error': '' ;?>">
                                 <label for="no_hp">No HP</label>
                                 <input type="text" id="no_hp" class="form-control" name="no_hp" placeholder="no_hp ..." value="<?php echo (!empty($_POST['no_hp'])) ? $_POST['no_hp'] : '';?>" required>
                               </div>

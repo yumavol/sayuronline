@@ -33,7 +33,7 @@ if(!empty($_POST)) {
   if(is_error($nama, 'required|min_length[3]')) {
     $form_error['nama'] = 'Nama minimal 3 karakter.';
   }
-  if(is_error($no_hp, 'required')) {
+  if(is_error($no_hp, 'required|min_length[10]|max_length[12]')) {
     $form_error['no_hp'] = 'No. Telp wajib diisi.';
   }
   if(is_error($email, 'required|min_length[5]')) {
@@ -44,7 +44,7 @@ if(!empty($_POST)) {
     $form_error['nama'] = 'Nama tidak valid.';
   }
 
-  if(!is_error($no_hp, 'required') && is_error($no_hp, 'callback_validasi_no_hp')) {
+  if(!is_error($no_hp, 'required|min_length[10]|max_length[12]') && is_error($no_hp, 'callback_validasi_no_hp')) {
     $form_error['no_hp'] = 'No. Telp tidak valid.';
   }
 

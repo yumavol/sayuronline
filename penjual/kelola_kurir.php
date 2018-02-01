@@ -55,14 +55,14 @@ require_once('layout/header.php');
                               <div class="box-header with-border">
                                   <h3 class="box-title">Daftar Petugas Kurir</h3>
                                   <div class="box-tools pull-right">
-                                    <form action="" method="get" class="form-horizontal">
-                                        <div class="input-group pull-right ">
-                                          <input type="text" name="cari" class="form-control" placeholder="Search for..." value="">
-                                          <span class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"><i class="fa fa-search"></i> Cari!</button>
-                                          </span>
-                                        </div><!-- /input-group -->
-                                    </form>
+                                      <form action="" method="get" class="form-horizontal">
+                                          <div class="input-group pull-right col-md-4">
+                                            <input type="text" name="cari" class="form-control" placeholder="Search for..." value="<?php echo (!empty($_GET['cari'])) ? $_GET['cari'] : '';?>">
+                                            <span class="input-group-btn">
+                                              <button class="btn btn-default" type="submit"><i class="fa fa-search"></i> Cari!</button>
+                                            </span>
+                                          </div><!-- /input-group -->
+                                      </form>
                                   </div><!-- /.box-tools -->
                               </div><!-- /.box-header -->
                               <div class="box-body no-padding">

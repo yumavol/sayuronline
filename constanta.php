@@ -17,5 +17,3 @@
 
     // Name of the "system folder"
     define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
-
-   

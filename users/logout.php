@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once('../system/engine.php');
 
 unset($_SESSION['id_user']);

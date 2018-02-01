@@ -121,7 +121,7 @@ function escape($inp = ''){
 	   return $inp; 
 }
 
-function url_title($str, $separator = '-', $lowercase = FALSE) {
+function url_title($str, $separator = '-', $lowercase = TRUE) {
 	if ($separator === 'dash') {
 		$separator = '-';
 	} elseif ($separator === 'underscore') {
