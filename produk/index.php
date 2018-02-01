@@ -104,7 +104,7 @@
 
                while($res = mysqli_fetch_array($data_produk)) {
 
-                $url_produk = $config['url_rewrite'] ? $res['kategori_slug'] . '/' . $res['slug'] . '.html' : 'detail.php?kategori=' . $res['kategori_slug'] . '&slug=' . $res['slug'];
+                $url_produk = $config['url_rewrite'] ? $res['kategori_slug'] . '/' . $res['slug'] . '.html' : 'produk/detail.php?kategori=' . $res['kategori_slug'] . '&slug=' . $res['slug'];
 
                if(($i == 1)){ ?>
             <div class="row"><!-- row product -->
