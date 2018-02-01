@@ -28,7 +28,8 @@ require_once('../system/engine.php');
         <section class="content-header"> 
           <h1>
               Produk <small>Produk kami</small>
-              <a class="btn btn-sm btn-default pull-right" href="<?php echo base_url('produk');?>"><i class="fa fa-chevron-left"></i> Kembali</a>
+              <?php $link_kembali = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : base_url('produk');?>
+              <a class="btn btn-sm btn-default pull-right" href="<?php echo $link_kembali;?>"><i class="fa fa-chevron-left"></i> Kembali</a>
           </h1> 
         </section>
 
