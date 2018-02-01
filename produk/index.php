@@ -11,7 +11,7 @@
   $query_string = $_GET;
   $no_kategori = (!empty($_GET['no_kategori'])) ? $_GET['no_kategori'] : '';
   if(!empty($_GET['cari'])) {
-      $sql = "SELECT kategori_produk.nama as nama_kategori, produk.* FROM produk 
+      $sql = "SELECT kategori_produk.slug as kategori_slug, kategori_produk.nama as nama_kategori, produk.* FROM produk 
       JOIN kategori_produk ON kategori_produk.no_kategori=produk.no_kategori
       WHERE produk.nama LIKE '%" . mysqli_real_escape_string($con, $_GET['cari']) . "%'";
 
@@ -19,11 +19,12 @@
         $sql .= " AND produk.no_kategori='" . mysqli_real_escape_string($con, $no_kategori) . "'";
       }
 
+      $sql .= " ORDER BY produk.no_produk DESC";
       $total_row = mysqli_num_rows(mysqli_query($con, $sql));
   } else {
-      $sql = "SELECT kategori_produk.nama as nama_kategori, produk.* FROM produk 
+      $sql = "SELECT kategori_produk.slug as kategori_slug, kategori_produk.nama as nama_kategori, produk.* FROM produk 
       JOIN kategori_produk ON kategori_produk.no_kategori=produk.no_kategori
-      ORDER BY nama";
+      ORDER BY produk.no_produk DESC";
       $total_row = mysqli_num_rows(mysqli_query($con, $sql));
   }
 
@@ -102,6 +103,9 @@
           <?php $i = 1;
 
                while($res = mysqli_fetch_array($data_produk)) {
+
+                $url_produk = $config['url_rewrite'] ? $res['kategori_slug'] . '/' . $res['slug'] . '.html' : 'detail.php?kategori=' . $res['kategori_slug'] . '&slug=' . $res['slug'];
+
                if(($i == 1)){ ?>
             <div class="row"><!-- row product -->
           <?php } //end if
@@ -115,15 +119,15 @@
             <div class="col-md-3">
               <div class="box box-solid">
                 <div class="box-body no-padding">
-                  <a href="<?php echo base_url('produk/detail.php?slug=').$res['slug'] ?>">
+                  <a href="<?php echo base_url($url_produk); ?>">
                     <div class="image"><img src="<?php echo base_url('uploads/foto/' .$res['foto']); ?>"></div>
                   </a>
                 </div>
                 <div class="box-footer" style="padding-bottom: 0px">
-                  <p><label><a href="<?php echo base_url('produk/detail.php?slug=').$res['slug'] ?>" class="text-black"><?php echo $res['nama']; ?></span></a></label><br/>
+                  <p><label><a href="<?php echo base_url($url_produk); ?>" class="text-black"><?php echo $res['nama']; ?></span></a></label><br/>
                   <label class="text-danger"><small><?php echo format_uang($res['harga']); ?></small></label><br/>
                   <small><i class="fa fa-tag"></i> <?php echo $res['nama_kategori']; ?></small></p>
-                  <p><a href="<?php echo base_url('produk/detail.php?slug=').$res['slug'] ?>" class="btn btn-block btn-xs btn-green"><i class="fa fa-search"></i> Selengkapnya</a></p>
+                  <p><a href="<?php echo base_url($url_produk); ?>" class="btn btn-block btn-xs btn-green"><i class="fa fa-search"></i> Selengkapnya</a></p>
                 </div>
               </div><!-- /.box -->
             </div>

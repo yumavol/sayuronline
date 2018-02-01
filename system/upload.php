@@ -1,4 +1,9 @@
 <?php
+function formatBytes($bytes, $precision = 2) {
+    $unit = ["B", "KB", "MB", "GB"];
+    $exp = floor(log($bytes, 1024)) | 0;
+    return round($bytes / (pow(1024, $exp)), $precision).$unit[$exp];
+}
 //function do_uploade(file, directory, tipedata)
 function do_upload($file, $config) {
 	$size = $file['size'];
@@ -21,7 +26,7 @@ function do_upload($file, $config) {
 
 	if(isset($config['max_size'])) {
 		if($size > $config['max_size']) {
-			$errors[] = "Ukuran file terlalu besar";
+			$errors[] = "Ukuran file terlalu besar (maksimal " . formatBytes($config['max_size']) . ").";
 		}
 	}
 

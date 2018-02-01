@@ -121,32 +121,21 @@ function escape($inp = ''){
 	   return $inp; 
 }
 
-function url_title($str, $separator = '-', $lowercase = TRUE) {
-	if ($separator === 'dash') {
-		$separator = '-';
-	} elseif ($separator === 'underscore') {
-		$separator = '_';
-	}
-
-	$q_separator = preg_quote($separator, '#');
-
+function url_title($str) {
 	$trans = array(
-		'&.+?;'			=> '',
-		'[^\w\d _-]'		=> '',
-		'\s+'			=> $separator,
-		'('.$q_separator.')+'	=> $separator
+		'&.+?;' => '',
+		'[^\w\d _-]' => '',
+		'\s+' => '-',
+		'(\-)+'	=> '-'
 	);
 
 	$str = strip_tags($str);
+
 	foreach ($trans as $key => $val) {
 		$str = preg_replace('#'.$key.'#i', $val, $str);
 	}
 
-	if ($lowercase === TRUE) {
-		$str = strtolower($str);
-	}
-
-	return trim(trim($str, $separator));
+	return trim(trim(strtolower($str), '-'));
 }
 
 if(isset($_SERVER['HTTP_REFERER'])){

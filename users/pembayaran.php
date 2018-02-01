@@ -66,6 +66,7 @@ if(!empty($_POST)) {
 
     $config_foto['file_name'] = $_GET['no_transaksi'];
     $config_foto['directory'] = 'uploads/pembayaran';
+    $config_foto['max_size'] = '2097152'; // 2MB
     $config_foto['allowed_ext'] = array('jpg', 'jpeg', 'gif', 'png', 'bmp');
 
     $upload = do_upload($_FILES['bukti_transfer'], $config_foto);

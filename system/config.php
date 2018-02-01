@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 # regular configuration
 $config = array();
 $config['base_url'] = 'http://localhost/project/sayuronline/';
-
+$config['url_rewrite'] = true;
 
 # database configuration 
 $config['db_type'] = 'mysql';

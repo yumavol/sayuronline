@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 27, 2018 at 01:28 PM
+-- Generation Time: Feb 01, 2018 at 06:38 PM
 -- Server version: 5.6.35
 -- PHP Version: 5.6.30
 
@@ -53,6 +53,14 @@ CREATE TABLE `kategori_produk` (
   `slug` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `kategori_produk`
+--
+
+INSERT INTO `kategori_produk` (`no_kategori`, `nama`, `slug`) VALUES
+(1, 'Sayur', 'sayur'),
+(2, 'Buah', 'buah');
+
 -- --------------------------------------------------------
 
 --
@@ -98,6 +106,34 @@ CREATE TABLE `produk` (
   `slug` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `produk`
+--
+
+INSERT INTO `produk` (`no_produk`, `no_kategori`, `nama`, `deskripsi`, `harga`, `foto`, `slug`) VALUES
+(1, 2, 'Apel', 'Dijual perkilogram.', '27000', 'Apel.png', 'apel'),
+(2, 2, 'Pisang', 'Dijual persisir.', '7000', 'Pisang.png', 'pisang'),
+(3, 2, 'Pepaya', 'Dijual perkilogram.', '5000', 'Pepaya.png', 'pepaya'),
+(4, 2, 'Jeruk', 'Dijual perkilogram.', '17000', 'Jeruk.png', 'jeruk'),
+(5, 2, 'Melon', 'Dijual perkilogram.', '10000', 'Melon.png', 'melon'),
+(6, 2, 'Nanas', 'Dijual perkilogram.', '7000', 'Nanas.png', 'nanas'),
+(7, 2, 'Semangka', 'Dijual perkilogram.', '6000', 'Semangka.png', 'semangka'),
+(8, 2, 'Lemon', 'Dijual perkilogram.', '10000', 'Lemon.png', 'lemon'),
+(9, 1, 'Seledri', 'Dijual perkilogram.', '10000', 'Seledri.png', 'seledri'),
+(10, 1, 'Brokoli', 'Dijual perkilogram.', '11000', 'Brokoli.png', 'brokoli'),
+(11, 1, 'Kentang', 'Dijual perkilogram.', '11000', 'Kentang.png', 'kentang'),
+(12, 1, 'Bawang Putih', 'Dijual perkilogram.', '10000', 'Bawang-Putih.png', 'bawang-putih'),
+(13, 1, 'Bawang Merah', 'Dijual perkilogram.', '23000', 'Bawang-Merah.png', 'bawang-merah'),
+(14, 1, 'Bawang Daun', 'Dijual perkilogram.', '13000', 'Bawang-Daun.png', 'bawang-daun'),
+(15, 1, 'Wortel', 'Dijual perkilogram.', '25000', 'Wortel.png', 'wortel'),
+(16, 1, 'Tomat', 'Dijual perkilogram.', '2000', 'Tomat.png', 'tomat'),
+(17, 1, 'Terong', 'Dijual perkilogram.', '8000', 'Terong.png', 'terong'),
+(18, 1, 'Jamur', 'Dijual perkilogram.', '15000', 'Jamur.png', 'jamur'),
+(19, 1, 'Cabai', 'Dijual perkilogram.', '10000', 'Cabai.png', 'cabai'),
+(20, 1, 'Lobak', 'Dijual perkilogram.', '12000', 'Lobak.png', 'lobak'),
+(21, 1, 'Paprika', 'Dijual perkilogram.', '12000', 'Paprika.png', 'paprika'),
+(22, 1, 'Selada', 'Dijual perkilogram.', '7000', 'Selada.png', 'selada');
+
 -- --------------------------------------------------------
 
 --
@@ -106,13 +142,13 @@ CREATE TABLE `produk` (
 
 CREATE TABLE `transaksi` (
   `no_transaksi` varchar(25) NOT NULL,
-  `id_petugas` int(11) NOT NULL,
+  `id_petugas` int(11) DEFAULT NULL,
   `id_alamat` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `tanggal` date NOT NULL,
   `jumlah_kuantiti` int(5) NOT NULL,
   `total_harga` decimal(12,0) NOT NULL,
-  `status` enum('Sedang Diproses','Sedang Dikirim','Berhasil','Gagal') NOT NULL
+  `status` enum('Sedang Diproses','Sedang Dikirim','Berhasil','Gagal','Menunggu Bukti Transfer') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -130,6 +166,15 @@ CREATE TABLE `user` (
   `no_hp` varchar(15) NOT NULL,
   `tipe_user` enum('admin','pembeli','penjual') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id_user`, `username`, `nama`, `email`, `password`, `no_hp`, `tipe_user`) VALUES
+(1, 'admin', 'Administrator', 'irsyadfau27@gmail.com', '$2y$12$ILm9c9gspjh5xeiabciSAukplwgqH.9DXEsFLoYCGKmBxo9pljWcW', '08123456789', 'admin'),
+(2, 'penjual', 'Penjual hehe', 'aku@penjual.com', '$2y$12$ILm9c9gspjh5xeiabciSAukplwgqH.9DXEsFLoYCGKmBxo9pljWcW', '0123456789', 'penjual'),
+(3, 'pembeli', 'pembeli', 'aku@pembeli.com', '$2y$12$ILm9c9gspjh5xeiabciSAukplwgqH.9DXEsFLoYCGKmBxo9pljWcW', '0123456789', 'pembeli');
 
 --
 -- Indexes for dumped tables
@@ -211,7 +256,7 @@ ALTER TABLE `detail_transaksi`
 -- AUTO_INCREMENT for table `kategori_produk`
 --
 ALTER TABLE `kategori_produk`
-  MODIFY `no_kategori` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `no_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `petugas_kurir`
 --
@@ -221,12 +266,12 @@ ALTER TABLE `petugas_kurir`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `no_produk` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `no_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --

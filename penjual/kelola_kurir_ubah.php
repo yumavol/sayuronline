@@ -1,6 +1,6 @@
 <?php
-define("load_upload", true);
 require_once('../system/engine.php');
+require_once('../system/validasi.php');
 
 if(!get_session('login')) {
     redirect(base_url('login.php'));
